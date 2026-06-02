@@ -6,7 +6,7 @@ const CREDENTIALS = {
 
 // URL de tu Google Apps Script (Debe ser reemplazada por el usuario más adelante)
 // const GOOGLE_SCRIPT_URL = "URL_DE_TU_SCRIPT_AQUI";
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzy0ASiyE1AS_FIIbkT6Nx9kpeAReHQr0DdIgbiB8RbHM2koiQ7X1Hbuhhlbu_oA5YwRA/exec"; 
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxvacow__X9DVV8KZdMu_9uS27ZFToqLsvHijYs189FbeYXn6xFOh4M0apKRK2ZUi2p4w/exec"; 
 
 function login() {
     const userIn = document.getElementById("username").value;
