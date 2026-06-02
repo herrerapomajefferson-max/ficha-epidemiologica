@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Investigación Epidemiológica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div id="login-container">
+        <div class="login-box">
+            <h2>Acceso a Ficha Epidemiológica</h2>
+            <p>Ingrese sus credenciales para continuar</p>
+            <div class="input-group">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" placeholder="Ingrese el usuario">
+            </div>
+            <div class="input-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" placeholder="Ingrese la contraseña">
+            </div>
+            <button id="btn-login" onclick="login()">Ingresar</button>
+            <p id="login-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Main Form Screen -->
+    <div id="form-container" style="display: none;">
+        <div class="document-wrapper">
+            <img src="ficha_fondo.png" alt="Ficha Epidemiológica" class="document-bg" id="document-bg">
+            
+            <form id="epidemiology-form">
+
+                <!-- === CAMPOS ACTUALIZADOS === -->
+                <input type="text" name="madre_apellidos_nombres" class="abs-input" style="top: 8.39%; left: 29.56%; width: 33%; font-size: 12px;">
+                <input type="text" name="nino_apellidos_nombres" class="abs-input" style="top: 10%; left: 26.78%; width: 35%; font-size: 12px;">
+                <input type="text" name="telefono" class="abs-input" style="top: 11.68%; left: 14.56%; width: 25%; font-size: 11px;">
+                <input type="text" name="nacionalidad_madre" class="abs-input" style="top: 13.21%; left: 21.11%; width: 25%; font-size: 11px;">
+                <input type="text" name="nacionalidad_hijo" class="abs-input" style="top: 13.21%; left: 63.22%; width: 25%; font-size: 10px;">
+                <input type="text" name="peso_nacimiento" class="abs-input" style="top: 72.62%; left: 52.9%; width: 6%; font-size: 12px;">
+                <input type="text" name="edad_gestacional_est" class="abs-input" style="top: 72.95%; left: 82.23%; width: 5%; height: 17px;">
+                <input type="text" name="Lugarderesidencia_Pais" class="abs-input" style="top: 27.69%; left: 33.78%; width: 10%; height: 19px; font-size: 12px;">
+                <input type="text" name="ESTABLECIMIENTO_NOTIFICANTE" class="abs-input" style="top: 16.52%; left: 31.67%; width: 20%; height: 21px; font-size: 11px;">
+                <input type="text" name="DEPARTAMENTO" class="abs-input" style="top: 27.84%; left: 57.33%; width: 12%; font-size: 9px;">
+                <input type="text" name="PROVINCIA" class="abs-input" style="top: 27.92%; left: 77.89%; width: 12%; height: 18px; font-size: 11px;">
+                <input type="text" name="DISTRITO" class="abs-input" style="top: 29.26%; left: 15.44%; width: 14%; height: 16px; font-size: 10px;">
+                <input type="text" name="DIRECCION" class="abs-input" style="top: 29.34%; left: 40.21%; width: 18%; height: 17px; font-size: 12px;">
+                <input type="text" name="REFERENCIA" class="abs-input" style="top: 29.26%; left: 68.45%; width: 16%; height: 18px; font-size: 11px;">
+                <input type="radio" name="Institucion" value="Ministerio_de_salud" class="abs-radio" style="top: 19.04%; left: 17.22%;">
+                <input type="radio" name="Institucion" value="EsSalud" class="abs-radio" style="top: 19.08%; left: 33.33%;">
+                <input type="radio" name="Institucion" value="FFAA/FFPP" class="abs-radio" style="top: 19.11%; left: 41.34%;">
+                <input type="radio" name="Institucion" value="Privado" class="abs-radio" style="top: 19.07%; left: 52.33%;">
+                <input type="radio" name="Nivel_de_establecimiento" value="I-1" class="abs-radio" style="top: 17.94%; left: 64.33%;">
+                <input type="radio" name="Nivel_de_establecimiento" value="I-2" class="abs-radio" style="top: 17.82%; left: 71.22%;">
+                <input type="radio" name="Nivel_de_establecimiento" value="I-3" class="abs-radio" style="top: 18.01%; left: 76.56%;">
+                <input type="radio" name="Nivel_de_establecimiento" value="I-4" class="abs-radio" style="top: 17.89%; left: 81.89%;">
+                <input type="radio" name="Nivel_de_establecimiento" value="II-1" class="abs-radio" style="top: 19.02%; left: 64.33%;">
+                <input type="radio" name="Nivel_de_establecimiento" value="II-2" class="abs-radio" style="top: 19.06%; left: 71.22%;">
+                <input type="radio" name="Nivel_de_establecimiento" value="III-1" class="abs-radio" style="top: 18.93%; left: 76.56%;">
+                <input type="radio" name="Investigacion_de" value="Sífilis_materna" class="abs-radio" style="top: 21.63%; left: 77.78%;">
+                <input type="radio" name="Investigacion_de" value="Sífilis congénita" class="abs-radio" style="top: 22.77%; left: 77.78%;">
+                <input type="checkbox" name="Fecha_de_inicio_de_ultimo_periodo_menstrual" class="abs-check" style="top: 31.92%; left: 49.56%;">
+                <input type="radio" name="Recibio_atencion_prenatal" value="Si" class="abs-radio" style="top: 32%; left: 63.11%;">
+                <input type="radio" name="Recibio_atencion_prenatal" value="No" class="abs-radio" style="top: 33.23%; left: 63.11%;">
+                <input type="radio" name="Recibio_atencion_prenatal" value="Desconocido" class="abs-radio" style="top: 34.44%; left: 63.11%;">
+                <input type="radio" name="Estado_vital" value="Vivo" class="abs-radio" style="top: 66.92%; left: 68.54%;">
+                <input type="radio" name="Estado_vital" value="Nació_vivo_luego_muri" class="abs-radio" style="top: 68.21%; left: 68.55%;">
+                <input type="radio" name="Estado_vital" value="Mortinato" class="abs-radio" style="top: 69.58%; left: 68.44%;">
+                <input type="radio" name="Estado_vital" value="Aborto" class="abs-radio" style="top: 70.71%; left: 68.44%;">
+                <input type="radio" name="Clasificación_final_del_niño_Mortinato_o_Aborto" value="Sífilis_congénita" class="abs-radio" style="top: 88.85%; left: 60.33%;">
+                <input type="radio" name="Clasificación_final_del_niño_Mortinato_o_Aborto" value="Niño_expuesto_a_sífilis_no_infectado" class="abs-radio" style="top: 91.32%; left: 60.33%;">
+                <input type="text" name="Edad_gestacional_en_el_primer_control_prenatal" class="abs-input" style="top: 36.88%; left: 66.22%; width: 6%; height: 15px;">
+                <input type="radio" name="Clasificación_de_caso_de_sífilis_en_la_gestante" value="Probable" class="abs-radio" style="top: 57.25%; left: 72.45%;">
+                <input type="radio" name="Clasificación_de_caso_de_sífilis_en_la_gestante" value="Confirmado" class="abs-radio" style="top: 58.46%; left: 72.55%;">
+                <input type="radio" name="Clasificación_de_caso_de_sífilis_en_la_gestante" value="Descartado(Falso_positivo)" class="abs-radio" style="top: 59.83%; left: 72.45%;">
+                <input type="radio" name="Clasificación_de_caso_de_sífilis_en_la_gestante" value="Descartado(Sífilis_Memoria)" class="abs-radio" style="top: 61.05%; left: 72.55%;">
+                <input type="checkbox" name="Fecha_de_primer_control_prenatal" class="abs-check" style="top: 37.12%; left: 10.23%;">
+                <input type="text" name="Primera_prueba_treponémica_dia" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="Primera_prueba_treponémica" placeholder="DD" style="top: 48.83%; left: 10.56%; width: 3%; height: 15px;">
+                <input type="text" name="Primera_prueba_treponémica_mes" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="Primera_prueba_treponémica" placeholder="MM" style="top: 48.83%; left: 14.55%; width: 3%; height: 15px;">
+                <input type="text" name="Primera_prueba_treponémica_anio" class="abs-fecha-seg" maxlength="4" data-tipo="fecha_seg" data-grupo="Primera_prueba_treponémica" placeholder="AAAA" style="top: 48.92%; left: 18.45%; width: 4.5%; height: 15px;">
+                <input type="text" name="Reciente_prueba_no_treponémica_dia" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="Reciente_prueba_no_treponémica" placeholder="DD" style="top: 43.8%; left: 11%; width: 3%; height: 13px;">
+                <input type="text" name="Reciente_prueba_no_treponémica_mes" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="Reciente_prueba_no_treponémica" placeholder="MM" style="top: 43.72%; left: 16.11%; width: 3%; height: 13px;">
+                <input type="text" name="Reciente_prueba_no_treponémica_anio" class="abs-fecha-seg" maxlength="4" data-tipo="fecha_seg" data-grupo="Reciente_prueba_no_treponémica" placeholder="AAAA" style="top: 43.8%; left: 21.34%; width: 4.5%; height: 13px;">
+                <input type="text" name="Primera_prueba_no_treponémica_dia" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="Primera_prueba_no_treponémica" placeholder="DD" style="top: 42.16%; left: 11%; width: 3%; height: 15px;">
+                <input type="text" name="Primera_prueba_no_treponémica_mes" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="Primera_prueba_no_treponémica" placeholder="MM" style="top: 42.23%; left: 16.44%; width: 3%; height: 15px;">
+                <input type="text" name="Primera_prueba_no_treponémica_anio" class="abs-fecha-seg" maxlength="4" data-tipo="fecha_seg" data-grupo="Primera_prueba_no_treponémica" placeholder="AAAA" style="top: 42.15%; left: 21.56%; width: 4.5%; height: 15px;">
+                <input type="text" name="Reciente_prueba_treponémica_dia" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="Reciente_prueba_treponémica" placeholder="DD" style="top: 51.48%; left: 10.45%; width: 3%; height: 15px;">
+                <input type="text" name="Reciente_prueba_treponémica_mes" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="Reciente_prueba_treponémica" placeholder="MM" style="top: 51.45%; left: 14.56%; width: 3%; height: 15px;">
+                <input type="text" name="Reciente_prueba_treponémica_anio" class="abs-fecha-seg" maxlength="4" data-tipo="fecha_seg" data-grupo="Reciente_prueba_treponémica" placeholder="AAAA" style="top: 51.72%; left: 18.11%; width: 4.5%; height: 15px;">
+                <input type="radio" name="Resultados_primera_prueba_treponémica" value="Reactivo" class="abs-radio" style="top: 42.21%; left: 34.78%;">
+                <input type="radio" name="Resultados_primera_prueba_treponémica" value="No_reactivo" class="abs-radio" style="top: 42.27%; left: 45.44%;">
+                <input type="radio" name="Resultados_primera_prueba_treponémica" value="Desconocido" class="abs-radio" style="top: 42.3%; left: 57.67%;">
+                <input type="radio" name="Resultados_reciente_prueba_no_treponémica" value="Reactivo" class="abs-radio" style="top: 43.65%; left: 34.67%;">
+                <input type="radio" name="Resultados_reciente_prueba_no_treponémica" value="No_reactivo" class="abs-radio" style="top: 43.68%; left: 45.45%;">
+                <input type="radio" name="Resultados_reciente_prueba_no_treponémica" value="Desconocido" class="abs-radio" style="top: 43.72%; left: 57.67%;">
+                <input type="text" name="Título_primera_prueba_no_treponémica" class="abs-input" style="top: 42.23%; left: 62.22%; width: 4%; height: 14px;">
+                <input type="text" name="Título_reciente_prueba_no_treponémica" class="abs-input" style="top: 43.73%; left: 62.23%; width: 4%; height: 14px;">
+                <input type="radio" name="Momento_primera_prueba_no_treponémica" value="Gestación" class="abs-radio" style="top: 42.15%; left: 75.22%;">
+                <input type="radio" name="Momento_primera_prueba_no_treponémica" value="Parto" class="abs-radio" style="top: 42.19%; left: 81.89%;">
+                <input type="radio" name="Momento_primera_prueba_no_treponémica" value="Puerperio" class="abs-radio" style="top: 42.22%; left: 91.44%;">
+                <input type="radio" name="Reciente_prueba_no_treponémica" value="Gestación" class="abs-radio" style="top: 43.65%; left: 75.11%;">
+                <input type="radio" name="Reciente_prueba_no_treponémica" value="Parto" class="abs-radio" style="top: 43.68%; left: 81.89%;">
+                <input type="radio" name="Reciente_prueba_no_treponémica" value="Puerperio" class="abs-radio" style="top: 43.64%; left: 91.34%;">
+                <input type="radio" name="Tipo_de_primera_prueba_treponémica" value="Prueba_rápida/P.Dual" class="abs-radio" style="top: 48.91%; left: 23.89%;">
+                <input type="radio" name="Tipo_de_primera_prueba_treponémica" value="Otra" class="abs-radio" style="top: 50.21%; left: 23.89%;">
+                <input type="radio" name="Tipo_de_primera_prueba_treponémica" value="Prueba_rápida/P.Dual" class="abs-radio" style="top: 51.43%; left: 23.78%;">
+                <input type="radio" name="Tipo_de_primera_prueba_treponémica" value="Otra" class="abs-radio" style="top: 52.8%; left: 23.78%;">
+                <input type="text" name="Otro_tipo_de_primera_prueba_treponémica" class="abs-input" style="top: 50.25%; left: 28.78%; width: 8%; height: 14px;">
+                <input type="text" name="Otro_tipo_de_prueba_treponómica_reciente" class="abs-input" style="top: 52.37%; left: 29.78%; width: 10%; height: 14px;">
+                <input type="radio" name="Resultados_primera_prueba_treponémica" value="Reactivo" class="abs-radio" style="top: 48.99%; left: 46.89%;">
+                <input type="radio" name="Resultados_primera_prueba_treponémica" value="No_reactivo" class="abs-radio" style="top: 48.87%; left: 57.56%;">
+                <input type="radio" name="Resultados_primera_prueba_treponémica" value="Desconocido" class="abs-radio" style="top: 48.9%; left: 64.33%;">
+                <input type="radio" name="Resultados_prueba_treponémica_reciente" value="Reactivo" class="abs-radio" style="top: 51.51%; left: 46.78%;">
+                <input type="radio" name="Resultados_prueba_treponémica_reciente" value="No_reactivo" class="abs-radio" style="top: 51.46%; left: 57.67%;">
+                <input type="radio" name="Resultados_prueba_treponémica_reciente" value="Desconocido" class="abs-radio" style="top: 51.42%; left: 64.33%;">
+                <input type="radio" name="Momento_primera_prueba_treponémica" value="Gestación" class="abs-radio" style="top: 48.99%; left: 75.11%;">
+                <input type="radio" name="Momento_primera_prueba_treponémica" value="Parto" class="abs-radio" style="top: 48.95%; left: 81.89%;">
+                <input type="radio" name="Momento_primera_prueba_treponémica" value="Puerperio" class="abs-radio" style="top: 48.98%; left: 91.44%;">
+                <input type="radio" name="Momento_prueba_treponémica_reciente" value="Gestación" class="abs-radio" style="top: 51.51%; left: 75.11%;">
+                <input type="radio" name="Momento_prueba_treponémica_reciente" value="Parto" class="abs-radio" style="top: 51.46%; left: 81.89%;">
+                <input type="radio" name="Momento_prueba_treponémica_reciente" value="Puerperio" class="abs-radio" style="top: 51.5%; left: 91.33%;">
+                <input type="radio" name="Durante_el_embarazo_la_madre_fue_adecuadamente_tratada?" value="Si" class="abs-radio" style="top: 54.81%; left: 9.11%;">
+                <input type="radio" name="Durante_el_embarazo_la_madre_fue_adecuadamente_tratada?" value="No" class="abs-radio" style="top: 56.18%; left: 9.11%;">
+                <input type="radio" name="Durante_el_embarazo_la_madre_fue_adecuadamente_tratada?" value="Desconocido" class="abs-radio" style="top: 62.11%; left: 9.11%;">
+                <input type="checkbox" name="Tratamiento_sin_penicilina" class="abs-check" style="top: 57.23%; left: 14.32%;">
+                <input type="checkbox" name="Tratamiento_durante_los_30_días_previos_al_parto" class="abs-check" style="top: 58.5%; left: 14.33%;">
+                <input type="checkbox" name="No_inició_tratamiento_durante_la_gestión" class="abs-check" style="top: 59.76%; left: 14.33%;">
+                <input type="checkbox" name="Tratamiento_incompleto(1o2dosis)" class="abs-check" style="top: 60.92%; left: 14.33%;">
+                <input type="text" name="Fecha_de_culminación_3ra_dosis" class="abs-input abs-fecha" maxlength="10" data-tipo="fecha" style="top: 54.57%; left: 36.33%; width: 12%; height: 16px; font-size: 20px;">
+                <input type="radio" name="Contactos_sexuales_tratados" value="Si" class="abs-radio" style="top: 58.58%; left: 52.22%;">
+                <input type="radio" name="Contactos_sexuales_tratados" value="No" class="abs-radio" style="top: 59.72%; left: 52.22%;">
+                <input type="radio" name="Contactos_sexuales_tratados" value="Desconocido" class="abs-radio" style="top: 61.07%; left: 52.22%;">
+                <input type="text" name="Si_contactos-sexuales_tratados" class="abs-input" style="top: 58.41%; left: 59.33%; width: 4%; height: 12px;">
+                <input type="text" name="No_contactos_sexuales_tratados" class="abs-input" style="top: 59.53%; left: 59.33%; width: 4%; height: 14px;">
+                <input type="text" name="Desconocidos_contactos_sexuales_tratados" class="abs-input" style="top: 60.94%; left: 63.56%; width: 4%; height: 12px;">
+                <input type="radio" name="Lugar_del_parto/Culminación_del_embarazo" value="Establecimiento_de_salud" class="abs-radio" style="top: 66.84%; left: 35.89%;">
+                <input type="radio" name="Lugar_del_parto/Culminación_del_embarazo" value="Domicilio" class="abs-radio" style="top: 70.79%; left: 36%;">
+                <input type="checkbox" name="Peso_al_nacimiento_desconocido" class="abs-check" style="top: 75.09%; left: 38.77%;">
+                <input type="checkbox" name="Edad_gestacional_estimada_desconocido" class="abs-check" style="top: 74.31%; left: 69.89%;">
+                <input type="checkbox" name="Fecha_de_parto/culminación_del_embarazo" class="abs-check" style="top: 69.51%; left: 8.78%;">
+                <input type="checkbox" name="Fecha_de_fallecimiento_desconocido" class="abs-check" style="top: 75.31%; left: 12.78%;">
+                <input type="radio" name="¿Fue_el_niño_tratado?" value="Si_con_penicilina_G_sódica_o_penicilina_G_procaínica_por_=>10días" class="abs-radio" style="top: 88.93%; left: 9.11%;">
+                <input type="radio" name="¿Fue_el_niño_tratado?" value="Si_con_penicilina_benzatínicax1dosis" class="abs-radio" style="top: 90.14%; left: 9.11%;">
+                <input type="radio" name="¿Fue_el_niño_tratado?" value="si_con_otro_tratamiento" class="abs-radio" style="top: 91.37%; left: 9.11%;">
+                <input type="radio" name="Si_con_otro_tratamiento" value="No_recibió_tratamiento" class="abs-radio" style="top: 92.53%; left: 15.67%;">
+                <input type="radio" name="Si_con_otro_tratamiento" value="Desconocido" class="abs-radio" style="top: 92.5%; left: 36%;">
+                <input type="checkbox" name="19Madre_con_sifilis" class="abs-check" style="top: 79.4%; left: 8.89%;">
+                <input type="checkbox" name="19resultado_de_títulos" class="abs-check" style="top: 80.5%; left: 8.89%;">
+                <input type="checkbox" name="19Niño_con_manifestaciones" class="abs-check" style="top: 82.86%; left: 8.89%;">
+                <input type="checkbox" name="19Demostración_de_treponema" class="abs-check" style="top: 84.28%; left: 9%;">
+                <input type="checkbox" name="19niño_mayor_de_2_años" class="abs-check" style="top: 85.53%; left: 9.11%;">
+                <input type="text" name="19Fecha_de_los_test_dia" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="19Fecha_de_los_test" placeholder="DD" style="top: 81.6%; left: 23.89%; width: 3%; height: 12px;">
+                <input type="text" name="19Fecha_de_los_test_mes" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="19Fecha_de_los_test" placeholder="MM" style="top: 81.54%; left: 28.22%; width: 3%; height: 12px;">
+                <input type="text" name="19Fecha_de_los_test_anio" class="abs-fecha-seg" maxlength="4" data-tipo="fecha_seg" data-grupo="19Fecha_de_los_test" placeholder="AAAA" style="top: 81.52%; left: 33.11%; width: 4.5%; height: 14px;">
+                <input type="checkbox" name="Fecha_de_los_test_desconocido" class="abs-check" style="top: 81.68%; left: 41.45%;">
+                <input type="text" name="Titulo_Madre" class="abs-input" style="top: 81.36%; left: 65.99%; width: 6%; height: 16px; font-size: 12px;">
+                <input type="text" name="Titulo_Niño" class="abs-input" style="top: 81.38%; left: 85.12%; width: 6%; height: 16px;">
+                <input type="radio" name="Lugar_de_parto_nivel_Estab" value="I-1" class="abs-radio" style="top: 69.43%; left: 46.78%;">
+                <input type="radio" name="Lugar_de_parto_nivel_Estab" value="I-2" class="abs-radio" style="top: 69.62%; left: 52.22%;">
+                <input type="radio" name="Lugar_de_parto_nivel_Estab" value="I-3" class="abs-radio" style="top: 69.5%; left: 57.55%;">
+                <input type="radio" name="Lugar_de_parto_nivel_Estab" value="I-4" class="abs-radio" style="top: 69.6%; left: 63%;">
+                <input type="text" name="DNI_madre_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="DNI_madre" data-idx="0" style="top: 10.08%; left: 66%; width: 2.5%; height: 22px;">
+                <input type="text" name="DNI_madre_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="DNI_madre" data-idx="1" style="top: 10.08%; left: 68.6%; width: 2.5%; height: 22px;">
+                <input type="text" name="DNI_madre_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="DNI_madre" data-idx="2" style="top: 10.08%; left: 71.31%; width: 2.5%; height: 22px;">
+                <input type="text" name="DNI_madre_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="DNI_madre" data-idx="3" style="top: 10.08%; left: 74.13%; width: 2.5%; height: 22px;">
+                <input type="text" name="DNI_madre_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="DNI_madre" data-idx="4" style="top: 10.08%; left: 76.96%; width: 2.5%; height: 22px;">
+                <input type="text" name="DNI_madre_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="DNI_madre" data-idx="5" style="top: 10.08%; left: 79.56%; width: 2.5%; height: 22px;">
+                <input type="text" name="DNI_madre_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="DNI_madre" data-idx="6" style="top: 10.08%; left: 82.16%; width: 2.5%; height: 22px;">
+                <input type="text" name="DNI_madre_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="DNI_madre" data-idx="7" style="top: 10.08%; left: 84.75%; width: 2.5%; height: 22px;">
+                <input type="text" name="DNI_madre_9" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="DNI_madre" data-idx="8" style="top: 10%; left: 87.58%; width: 2.5%; height: 22px;">
+                <input type="text" name="DNI_madre_10" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="DNI_madre" data-idx="9" style="top: 10%; left: 90.18%; width: 2.5%; height: 22px;">
+                <input type="text" name="Fecha_notificacion_e_investigacion_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_notificacion_e_investigacion" data-idx="0" style="top: 21.79%; left: 24.33%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_notificacion_e_investigacion_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_notificacion_e_investigacion" data-idx="1" style="top: 21.79%; left: 27.1%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_notificacion_e_investigacion_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_notificacion_e_investigacion" data-idx="2" style="top: 21.87%; left: 30.97%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_notificacion_e_investigacion_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_notificacion_e_investigacion" data-idx="3" style="top: 21.79%; left: 33.86%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_notificacion_e_investigacion_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_notificacion_e_investigacion" data-idx="4" style="top: 21.87%; left: 38.96%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_notificacion_e_investigacion_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_notificacion_e_investigacion" data-idx="5" style="top: 21.87%; left: 41.94%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_notificacion_e_investigacion_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_notificacion_e_investigacion" data-idx="6" style="top: 21.87%; left: 44.6%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_notificacion_e_investigacion_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_notificacion_e_investigacion" data-idx="7" style="top: 21.87%; left: 47.26%; width: 2%; height: 10px;">
+                <input type="text" name="Semana_Epidemiológica_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Semana_Epidemiológica" data-idx="0" style="top: 21.95%; left: 59.44%; width: 2.5%; height: 22px;">
+                <input type="text" name="Semana_Epidemiológica_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Semana_Epidemiológica" data-idx="1" style="top: 22.03%; left: 61.82%; width: 2.5%; height: 22px;">
+                <input type="text" name="Fecha_nacimiento_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_nacimiento" data-idx="0" style="top: 25.8%; left: 48.67%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_nacimiento_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_nacimiento" data-idx="1" style="top: 25.88%; left: 50.99%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_nacimiento_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_nacimiento" data-idx="2" style="top: 25.8%; left: 55.31%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_nacimiento_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_nacimiento" data-idx="3" style="top: 25.8%; left: 58.08%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_nacimiento_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_nacimiento" data-idx="4" style="top: 25.8%; left: 62.18%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_nacimiento_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_nacimiento" data-idx="5" style="top: 25.8%; left: 64.94%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_nacimiento_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_nacimiento" data-idx="6" style="top: 25.72%; left: 67.6%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_nacimiento_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_nacimiento" data-idx="7" style="top: 25.72%; left: 70.26%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_inicio_de_ultimo_periodo_menstrual_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_inicio_de_ultimo_periodo_menstrual" data-idx="0" style="top: 32.01%; left: 24%; width: 2.5%; height: 12px;">
+                <input type="text" name="Fecha_inicio_de_ultimo_periodo_menstrual_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_inicio_de_ultimo_periodo_menstrual" data-idx="1" style="top: 32.01%; left: 26.93%; width: 2.5%; height: 12px;">
+                <input type="text" name="Fecha_inicio_de_ultimo_periodo_menstrual_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_inicio_de_ultimo_periodo_menstrual" data-idx="2" style="top: 32.17%; left: 30.76%; width: 2.5%; height: 10px;">
+                <input type="text" name="Fecha_inicio_de_ultimo_periodo_menstrual_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_inicio_de_ultimo_periodo_menstrual" data-idx="3" style="top: 32.01%; left: 33.58%; width: 2.5%; height: 12px;">
+                <input type="text" name="Fecha_inicio_de_ultimo_periodo_menstrual_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_inicio_de_ultimo_periodo_menstrual" data-idx="4" style="top: 32.17%; left: 37.73%; width: 2.5%; height: 10px;">
+                <input type="text" name="Fecha_inicio_de_ultimo_periodo_menstrual_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_inicio_de_ultimo_periodo_menstrual" data-idx="5" style="top: 32.09%; left: 40.44%; width: 2.5%; height: 12px;">
+                <input type="text" name="Fecha_inicio_de_ultimo_periodo_menstrual_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_inicio_de_ultimo_periodo_menstrual" data-idx="6" style="top: 32.17%; left: 43.04%; width: 2.5%; height: 10px;">
+                <input type="text" name="Fecha_inicio_de_ultimo_periodo_menstrual_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_inicio_de_ultimo_periodo_menstrual" data-idx="7" style="top: 32.01%; left: 45.64%; width: 2.5%; height: 12px;">
+                <input type="text" name="Edad_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Edad" data-idx="0" style="top: 25.8%; left: 84.44%; width: 1.5%; height: 14px;">
+                <input type="text" name="Edad_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Edad" data-idx="1" style="top: 25.8%; left: 86.15%; width: 1.5%; height: 12px;">
+                <input type="text" name="Fecha_primer_control_prenatal_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_primer_control_prenatal" data-idx="0" style="top: 36.18%; left: 35.22%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_primer_control_prenatal_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_primer_control_prenatal" data-idx="1" style="top: 36.1%; left: 37.88%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_primer_control_prenatal_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_primer_control_prenatal" data-idx="2" style="top: 36.1%; left: 41.98%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_primer_control_prenatal_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_primer_control_prenatal" data-idx="3" style="top: 36.1%; left: 44.63%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_primer_control_prenatal_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_primer_control_prenatal" data-idx="4" style="top: 36.1%; left: 48.84%; width: 2%; height: 14px;">
+                <input type="text" name="Fecha_primer_control_prenatal_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_primer_control_prenatal" data-idx="5" style="top: 36.1%; left: 51.28%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_primer_control_prenatal_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_primer_control_prenatal" data-idx="6" style="top: 36.1%; left: 54.05%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_primer_control_prenatal_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_primer_control_prenatal" data-idx="7" style="top: 36.1%; left: 56.7%; width: 2%; height: 12px;">
+                <input type="text" name="13.Fecha_Parto_culminacion_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="13.Fecha_Parto_culminacion" data-idx="0" style="top: 67.07%; left: 9.67%; width: 2%; height: 12px;">
+                <input type="text" name="13.Fecha_Parto_culminacion_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="13.Fecha_Parto_culminacion" data-idx="1" style="top: 67.07%; left: 12.21%; width: 2%; height: 12px;">
+                <input type="text" name="13.Fecha_Parto_culminacion_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="13.Fecha_Parto_culminacion" data-idx="2" style="top: 67.06%; left: 16.2%; width: 2%; height: 12px;">
+                <input type="text" name="13.Fecha_Parto_culminacion_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="13.Fecha_Parto_culminacion" data-idx="3" style="top: 66.92%; left: 19.08%; width: 2%; height: 12px;">
+                <input type="text" name="13.Fecha_Parto_culminacion_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="13.Fecha_Parto_culminacion" data-idx="4" style="top: 66.92%; left: 23.18%; width: 2%; height: 12px;">
+                <input type="text" name="13.Fecha_Parto_culminacion_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="13.Fecha_Parto_culminacion" data-idx="5" style="top: 66.99%; left: 25.61%; width: 2%; height: 12px;">
+                <input type="text" name="13.Fecha_Parto_culminacion_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="13.Fecha_Parto_culminacion" data-idx="6" style="top: 66.99%; left: 28.38%; width: 2%; height: 10px;">
+                <input type="text" name="13.Fecha_Parto_culminacion_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="13.Fecha_Parto_culminacion" data-idx="7" style="top: 67.07%; left: 31.03%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_de_fallecimiento_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="0" style="top: 73.52%; left: 9.44%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_de_fallecimiento_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="1" style="top: 73.52%; left: 12.1%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_de_fallecimiento_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="2" style="top: 73.44%; left: 16.2%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_de_fallecimiento_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="3" style="top: 73.6%; left: 18.86%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_de_fallecimiento_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="4" style="top: 73.52%; left: 23.07%; width: 2%; height: 12px;">
+                <input type="text" name="Fecha_de_fallecimiento_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="5" style="top: 73.52%; left: 25.5%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_de_fallecimiento_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="6" style="top: 73.6%; left: 28.38%; width: 2%; height: 10px;">
+                <input type="text" name="Fecha_de_fallecimiento_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="7" style="top: 73.44%; left: 31.03%; width: 2%; height: 12px;">
+
+                <!-- Submit Button -->
+                <div class="submit-container">
+                    <button type="button" id="btn-submit" onclick="submitData()">Guardar e Enviar a Drive</button>
+                    <p id="submit-status"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="edit_mode.js"></script>
+    <script>
+    // ── 1. Color mostaza → transparente al escribir ──────────────────────────
+    function initHasValue() {
+        document.querySelectorAll('.abs-input, .abs-fecha-seg, .abs-digito').forEach(el => {
+            // Estado inicial (por si ya tiene valor guardado)
+            if (el.value && el.value.trim() !== '') el.classList.add('has-value');
+
+            el.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    this.classList.add('has-value');
+                } else {
+                    this.classList.remove('has-value');
+                }
+            });
+        });
+    }
+
+    // ── 2. Auto-avance Día → Mes → Año ───────────────────────────────────────
+    function initFechasSeparadas() {
+        let grupos = {};
+        document.querySelectorAll('.abs-fecha-seg').forEach(el => {
+            let g = el.dataset.grupo;
+            if (!g) return;
+            if (!grupos[g]) grupos[g] = [];
+            grupos[g].push(el);
+        });
+        Object.values(grupos).forEach(campos => {
+            campos.forEach((el, idx) => {
+                el.addEventListener('input', function() {
+                    if (this.value.length === this.maxLength && idx < campos.length - 1) {
+                        campos[idx + 1].focus();
+                    }
+                });
+                el.addEventListener('keypress', function(e) {
+                    if (!/[0-9]/.test(e.key)) e.preventDefault();
+                });
+            });
+        });
+    }
+
+    // Ejecutar cuando el formulario ya es visible
+    document.addEventListener('DOMContentLoaded', function() {
+        initFechasSeparadas();
+        initHasValue();
+    });
+
+    // También re-ejecutar cuando el login muestra el formulario
+    // (app.js llama showForm(), así que observamos el cambio de display)
+    const _observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(m) {
+            if (m.target.id === 'form-container' && m.attributeName === 'style') {
+                initFechasSeparadas();
+                initHasValue();
+            }
+        });
+    });
+    _observer.observe(document.getElementById('form-container'), { attributes: true });
+    </script>
+    
+    <!-- Controles de Edición para el Usuario -->
+    <div id="edit-panel" style="position: fixed; top: 10px; right: 10px; background: white; padding: 15px; border: 2px solid #e74c3c; border-radius: 8px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); width: 250px;">
+        <h4 style="color: #e74c3c; margin-bottom: 10px; text-align:center;">🛠️ Modo Edición Activo</h4>
+        
+        <label style="display: block; margin-bottom: 15px; cursor: pointer; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+            <input type="checkbox" id="edit-mode-toggle" checked> Permitir Arrastrar y Soltar
+        </label>
+        
+        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom: 15px;">
+            <button onclick="agregarTexto()" style="padding: 6px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x2795; Agregar Texto</button>
+            <button onclick="agregarFecha()" style="padding: 6px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F4C5; Agregar Fecha (DD/MM/AAAA)</button>
+            <button onclick="agregarFechaSeparada()" style="padding: 6px; background: #16a085; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F4C6; Fecha Separada (Día|Mes|Año)</button>
+            <button onclick="agregarDigitos()" style="padding: 6px; background: #8e44ad; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F522; Campo Dígito a Dígito (DNI)</button>
+            <button onclick="agregarCasilla()" style="padding: 6px; background: #9b59b6; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x2611;&#xFE0F; Casilla Múltiple</button>
+            <button onclick="agregarRadio()" style="padding: 6px; background: #e67e22; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F518; Opción Única (Solo 1)</button>
+            <button onclick="agregarSeleccion()" style="padding: 6px; background: #f39c12; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F53D; Agregar Selección</button>
+            
+            <!-- Controles de tamaño -->
+            <div style="display:flex; gap: 4px;">
+                <button onclick="reducirAncho()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➖ Ancho</button>
+                <button onclick="aumentarAncho()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➕ Ancho</button>
+            </div>
+            <div style="display:flex; gap: 4px;">
+                <button onclick="reducirAlto()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➖ Alto</button>
+                <button onclick="aumentarAlto()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➕ Alto</button>
+            </div>
+            <div style="display:flex; gap: 4px;">
+                <button onclick="reducirLetra()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➖ Letra</button>
+                <button onclick="aumentarLetra()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➕ Letra</button>
+            </div>
+
+            <button onclick="borrarSeleccionado()" style="padding: 6px; background: #7f8c8d; color: white; border: none; border-radius: 4px; cursor: pointer;">🗑️ Borrar Seleccionado</button>
+            <button onclick="alinearEnFila()" style="padding: 6px; background: #1abc9c; color: white; border: none; border-radius: 4px; cursor: pointer;">📐 Alinear Grupo en Fila</button>
+        </div>
+
+        <button onclick="exportarPosiciones()" style="width: 100%; padding: 10px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">📋 Finalizar y Copiar Datos</button>
+        
+        <p style="font-size: 11px; margin-top: 10px; color: #555;">Haz clic en un cuadro para seleccionarlo (borde rojo). Usa los botones para agregar nuevos y luego envíame el resultado copiado.</p>
+    </div>
+</body>
+</html>
