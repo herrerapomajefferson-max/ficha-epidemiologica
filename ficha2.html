@@ -44,6 +44,17 @@
         </div>
     </div>
 
+    
+    <script>
+    // Verificar sesión del menú
+    if (sessionStorage.getItem('autenticado') === 'true') {
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('form-container').style.display = 'flex';
+        });
+    }
+    </script>
+
     <script src="app.js"></script>
     <script src="edit_mode.js"></script>
     <script>

@@ -335,6 +335,7 @@
             const error = document.getElementById("login-error");
 
             if (user === CREDENTIALS.username && pass === CREDENTIALS.password) {
+                sessionStorage.setItem('autenticado', 'true');
                 document.getElementById("login-container").style.display = "none";
                 const menu = document.getElementById("menu-container");
                 menu.style.display = "flex";
@@ -344,6 +345,7 @@
         }
 
         function salir() {
+            sessionStorage.removeItem('autenticado');
             document.getElementById("menu-container").style.display = "none";
             document.getElementById("login-container").style.display = "flex";
             document.getElementById("username").value = "";
