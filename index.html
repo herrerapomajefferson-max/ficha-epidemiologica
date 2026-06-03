@@ -5,6 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Investigación Epidemiológica</title>
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+    @media print {
+        /* Ocultar todo excepto la ficha */
+        #login-container, #edit-panel { display: none !important; }
+        #form-container {
+            padding: 0 !important;
+            background: none !important;
+            min-height: unset !important;
+        }
+        .document-wrapper {
+            box-shadow: none !important;
+            max-width: 100% !important;
+        }
+        .submit-container { display: none !important; }
+
+        /* Mostrar valores de inputs como texto visible */
+        .abs-input, .abs-fecha-seg, .abs-digito {
+            background-color: transparent !important;
+            border: none !important;
+            outline: none !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Mostrar checkboxes y radios correctamente */
+        .abs-check, .abs-radio {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body { margin: 0; padding: 0; }
+        @page { margin: 0; size: A4 portrait; }
+    }
+    </style>
 </head>
 <body>
 
@@ -228,6 +263,7 @@
                 <div class="submit-container">
                     <button type="button" id="btn-submit" onclick="submitData()">Guardar e Enviar a Drive</button>
                     <p id="submit-status"></p>
+                    <button type="button" id="btn-pdf" onclick="descargarPDF()" style="margin-top:10px; padding: 15px 40px; background-color: #e74c3c; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(231,76,60,0.4);">&#x1F4C4; Descargar PDF</button>
                 </div>
             </form>
         </div>
@@ -273,6 +309,22 @@
                 });
             });
         });
+    }
+
+
+    // ── Descargar PDF ─────────────────────────────────────────────────────────
+    function descargarPDF() {
+        // Ocultar panel de edición temporalmente
+        const editPanel = document.getElementById('edit-panel');
+        const submitContainer = document.querySelector('.submit-container');
+        if (editPanel) editPanel.style.display = 'none';
+
+        window.print();
+
+        // Restaurar panel después de imprimir
+        setTimeout(function() {
+            if (editPanel) editPanel.style.display = '';
+        }, 1000);
     }
 
     // Ejecutar cuando el formulario ya es visible
