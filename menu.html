@@ -10,14 +10,11 @@
             --azul: #1a3a5c;
             --azul-med: #1e5799;
             --verde: #2ecc71;
-            --blanco: #f4f8fb;
-            --gris: #7f8c8d;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Source Sans 3', sans-serif;
+            font-family: "Source Sans 3", sans-serif;
             background: linear-gradient(135deg, #0f2744 0%, #1a3a5c 50%, #1e5799 100%);
             min-height: 100vh;
             display: flex;
@@ -26,25 +23,34 @@
             justify-content: center;
         }
 
-        /* ── LOGIN ── */
-        #login-container {
+        /* ── PANTALLAS ── */
+        .pantalla {
             width: 100%;
             min-height: 100vh;
-            display: flex;
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .pantalla.activa {
+            display: flex;
+            opacity: 1;
+        }
+        .pantalla.saliendo {
+            opacity: 0;
+            pointer-events: none;
         }
 
+        /* ── LOGIN ── */
         .logo-area {
             text-align: center;
             margin-bottom: 30px;
-            animation: fadeDown 0.6s ease;
         }
-
         .logo-area h1 {
-            font-family: 'Rajdhani', sans-serif;
+            font-family: "Rajdhani", sans-serif;
             font-size: 28px;
             font-weight: 700;
             color: #fff;
@@ -52,14 +58,12 @@
             text-transform: uppercase;
             line-height: 1.2;
         }
-
         .logo-area p {
             color: rgba(255,255,255,0.5);
             font-size: 13px;
             margin-top: 6px;
             letter-spacing: 1px;
         }
-
         .login-box {
             background: rgba(255,255,255,0.07);
             backdrop-filter: blur(12px);
@@ -69,29 +73,22 @@
             width: 100%;
             max-width: 380px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            animation: fadeUp 0.6s ease;
         }
-
         .login-box h2 {
-            font-family: 'Rajdhani', sans-serif;
+            font-family: "Rajdhani", sans-serif;
             color: #fff;
             font-size: 22px;
             font-weight: 600;
             margin-bottom: 6px;
             text-align: center;
         }
-
         .login-box .sub {
             color: rgba(255,255,255,0.45);
             font-size: 13px;
             text-align: center;
             margin-bottom: 28px;
         }
-
-        .input-group {
-            margin-bottom: 18px;
-        }
-
+        .input-group { margin-bottom: 18px; }
         .input-group label {
             display: block;
             color: rgba(255,255,255,0.7);
@@ -101,7 +98,6 @@
             text-transform: uppercase;
             margin-bottom: 7px;
         }
-
         .input-group input {
             width: 100%;
             padding: 12px 16px;
@@ -110,17 +106,14 @@
             border-radius: 8px;
             color: #fff;
             font-size: 15px;
-            font-family: 'Source Sans 3', sans-serif;
             transition: all 0.3s;
         }
-
         .input-group input::placeholder { color: rgba(255,255,255,0.3); }
         .input-group input:focus {
             outline: none;
             border-color: var(--verde);
             background: rgba(255,255,255,0.15);
         }
-
         #btn-login {
             width: 100%;
             padding: 13px;
@@ -130,17 +123,14 @@
             border-radius: 8px;
             font-size: 15px;
             font-weight: 700;
-            font-family: 'Rajdhani', sans-serif;
+            font-family: "Rajdhani", sans-serif;
             letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s;
             margin-top: 6px;
         }
-
         #btn-login:hover { background: #27ae60; transform: translateY(-1px); }
-        #btn-login:active { transform: scale(0.98); }
-
         .error-msg {
             color: #e74c3c;
             font-size: 13px;
@@ -150,38 +140,24 @@
         }
 
         /* ── MENÚ ── */
-        #menu-container {
-            display: none;
-            width: 100%;
-            min-height: 100vh;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-
         .menu-header {
             text-align: center;
             margin-bottom: 50px;
-            animation: fadeDown 0.5s ease;
         }
-
         .menu-header h1 {
-            font-family: 'Rajdhani', sans-serif;
+            font-family: "Rajdhani", sans-serif;
             font-size: 32px;
             font-weight: 700;
             color: #fff;
             letter-spacing: 3px;
             text-transform: uppercase;
         }
-
         .menu-header p {
             color: rgba(255,255,255,0.45);
             font-size: 14px;
             margin-top: 8px;
             letter-spacing: 1px;
         }
-
         .fichas-grid {
             display: flex;
             flex-wrap: wrap;
@@ -189,7 +165,6 @@
             justify-content: center;
             max-width: 900px;
         }
-
         .ficha-card {
             background: rgba(255,255,255,0.07);
             backdrop-filter: blur(12px);
@@ -201,26 +176,16 @@
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
-            animation: fadeUp 0.5s ease both;
         }
-
-        .ficha-card:nth-child(2) { animation-delay: 0.1s; }
-
         .ficha-card:hover {
             transform: translateY(-6px);
             border-color: var(--verde);
             box-shadow: 0 12px 40px rgba(46,204,113,0.2);
             background: rgba(255,255,255,0.12);
         }
-
-        .ficha-card .icono {
-            font-size: 48px;
-            margin-bottom: 16px;
-            display: block;
-        }
-
+        .ficha-card .icono { font-size: 48px; margin-bottom: 16px; display: block; }
         .ficha-card h3 {
-            font-family: 'Rajdhani', sans-serif;
+            font-family: "Rajdhani", sans-serif;
             color: #fff;
             font-size: 18px;
             font-weight: 700;
@@ -229,13 +194,7 @@
             margin-bottom: 10px;
             line-height: 1.3;
         }
-
-        .ficha-card p {
-            color: rgba(255,255,255,0.45);
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
+        .ficha-card p { color: rgba(255,255,255,0.45); font-size: 13px; line-height: 1.5; }
         .ficha-card .tag {
             display: inline-block;
             margin-top: 16px;
@@ -249,7 +208,6 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-
         .btn-salir {
             margin-top: 40px;
             padding: 10px 28px;
@@ -259,26 +217,67 @@
             color: rgba(255,255,255,0.5);
             font-size: 13px;
             cursor: pointer;
-            font-family: 'Source Sans 3', sans-serif;
             transition: all 0.3s;
-            animation: fadeUp 0.5s 0.3s ease both;
         }
         .btn-salir:hover { border-color: #e74c3c; color: #e74c3c; }
 
-        @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to   { opacity: 1; transform: translateY(0); }
+        /* ── VISOR DE FICHA ── */
+        #pantalla-ficha {
+            padding: 0;
+            justify-content: flex-start;
+            background: #ecf0f1;
         }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
+
+        .ficha-topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15,39,68,0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 999;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+        }
+        .btn-volver {
+            padding: 7px 18px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: "Source Sans 3", sans-serif;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .btn-volver:hover { background: rgba(255,255,255,0.2); border-color: var(--verde); }
+
+        .ficha-topbar-title {
+            font-family: "Rajdhani", sans-serif;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #iframe-ficha {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            margin-top: 50px;
+            background: #ecf0f1;
         }
     </style>
 </head>
 <body>
 
     <!-- LOGIN -->
-    <div id="login-container">
+    <div id="pantalla-login" class="pantalla activa">
         <div class="logo-area">
             <h1>Sistema de Fichas<br>Epidemiológicas</h1>
             <p>Gerencia Regional de Salud · La Libertad</p>
@@ -300,26 +299,35 @@
     </div>
 
     <!-- MENÚ -->
-    <div id="menu-container">
+    <div id="pantalla-menu" class="pantalla">
         <div class="menu-header">
             <h1>Sistema de Fichas Epidemiológicas</h1>
             <p>Seleccione la ficha que desea completar</p>
         </div>
         <div class="fichas-grid">
-            <a href="index.html" class="ficha-card">
+            <div class="ficha-card" onclick="abrirFicha('index.html', 'Sífilis Materna y Congénita')">
                 <span class="icono">🤰</span>
                 <h3>Sífilis Materna y Congénita</h3>
                 <p>Ficha de investigación epidemiológica de caso</p>
                 <span class="tag">MINSA</span>
-            </a>
-            <a href="ficha2.html" class="ficha-card">
+            </div>
+            <div class="ficha-card" onclick="abrirFicha('ficha2.html', 'Infección VIH y SIDA')">
                 <span class="icono">🔬</span>
                 <h3>Infección VIH y SIDA</h3>
                 <p>Ficha de notificación individual de caso</p>
                 <span class="tag">EsSalud</span>
-            </a>
+            </div>
         </div>
         <button class="btn-salir" onclick="salir()">⎋ Cerrar sesión</button>
+    </div>
+
+    <!-- VISOR FICHA -->
+    <div id="pantalla-ficha" class="pantalla">
+        <div class="ficha-topbar">
+            <button class="btn-volver" onclick="volverMenu()">← Volver al Menú</button>
+            <span class="ficha-topbar-title" id="titulo-ficha"></span>
+        </div>
+        <iframe id="iframe-ficha" src=""></iframe>
     </div>
 
     <script>
@@ -329,25 +337,58 @@
             if (e.key === "Enter") login();
         });
 
+        function cambiarPantalla(actual, siguiente) {
+            actual.classList.add("saliendo");
+            setTimeout(function() {
+                actual.classList.remove("activa", "saliendo");
+                actual.style.display = "none";
+                siguiente.style.display = "flex";
+                setTimeout(function() {
+                    siguiente.classList.add("activa");
+                }, 20);
+            }, 350);
+        }
+
         function login() {
             const user = document.getElementById("username").value;
             const pass = document.getElementById("password").value;
             const error = document.getElementById("login-error");
 
             if (user === CREDENTIALS.username && pass === CREDENTIALS.password) {
-                sessionStorage.setItem('autenticado', 'true');
-                document.getElementById("login-container").style.display = "none";
-                const menu = document.getElementById("menu-container");
-                menu.style.display = "flex";
+                sessionStorage.setItem("autenticado", "true");
+                cambiarPantalla(
+                    document.getElementById("pantalla-login"),
+                    document.getElementById("pantalla-menu")
+                );
             } else {
                 error.textContent = "Usuario o contraseña incorrectos.";
             }
         }
 
+        function abrirFicha(url, titulo) {
+            document.getElementById("titulo-ficha").textContent = titulo;
+            document.getElementById("iframe-ficha").src = url;
+            cambiarPantalla(
+                document.getElementById("pantalla-menu"),
+                document.getElementById("pantalla-ficha")
+            );
+        }
+
+        function volverMenu() {
+            document.getElementById("iframe-ficha").src = "";
+            cambiarPantalla(
+                document.getElementById("pantalla-ficha"),
+                document.getElementById("pantalla-menu")
+            );
+        }
+
         function salir() {
-            sessionStorage.removeItem('autenticado');
-            document.getElementById("menu-container").style.display = "none";
-            document.getElementById("login-container").style.display = "flex";
+            sessionStorage.removeItem("autenticado");
+            document.getElementById("iframe-ficha").src = "";
+            cambiarPantalla(
+                document.getElementById("pantalla-menu"),
+                document.getElementById("pantalla-login")
+            );
             document.getElementById("username").value = "";
             document.getElementById("password").value = "";
             document.getElementById("login-error").textContent = "";
