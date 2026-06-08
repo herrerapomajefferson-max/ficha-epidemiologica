@@ -5,7 +5,7 @@ const CREDENTIALS = {
 };
 
 // URL de tu Google Apps Script
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLDwq5jOgtXsSzClWEQoLV8NG0AL9u7vDhgt8bXlaLDM5CE4UAAx8-95hM5oyazVSpog/exec"; 
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxYHVKfSPEPmXg7kd2rVgBtgdVhV01zIgxX4u_pvogr97Y0dY3tlIkFTW7KP_8saCpDQ/exec"; 
 
 function login() {
     const userIn = document.getElementById("username").value;
