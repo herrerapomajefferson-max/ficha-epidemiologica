@@ -19,7 +19,6 @@
             box-shadow: none !important;
             max-width: 100% !important;
         }
-        .submit-container { display: none !important; }
 
         /* Mostrar valores de inputs como texto visible */
         .abs-input, .abs-fecha-seg, .abs-digito {
@@ -262,14 +261,15 @@
                 <input type="text" name="RED" class="abs-input" style="top: 15.11%; left: 46.22%; width: 16%; height: 15px; font-size: 12px;">
                 <input type="text" name="MICRORED" class="abs-input" style="top: 15.11%; left: 73%; width: 16%; height: 15px; font-size: 12px;">
 
-                <!-- Submit Button -->
-                <div class="submit-container">
-                    <button type="button" id="btn-submit" onclick="submitData()">Guardar e Enviar a Drive</button>
-                    <p id="submit-status"></p>
-                    <button type="button" id="btn-pdf" onclick="descargarPDF()" style="margin-top:10px; padding: 15px 40px; background-color: #e74c3c; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(231,76,60,0.4);">&#x1F4C4; Descargar PDF</button>
-                </div>
             </form>
         </div>
+    </div>
+
+    <!-- Botones fuera de la ficha, nunca tapan campos -->
+    <div class="submit-container" style="text-align:center; padding: 20px 0 30px 0;">
+        <button type="button" id="btn-submit" onclick="submitData()">Guardar e Enviar a Drive</button>
+        <p id="submit-status"></p>
+        <button type="button" id="btn-pdf" onclick="descargarPDF()" style="margin-top:10px; padding: 15px 40px; background-color: #e74c3c; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(231,76,60,0.4);">&#x1F4C4; Descargar PDF</button>
     </div>
 
     
@@ -328,16 +328,16 @@
 
     // ── Descargar PDF ─────────────────────────────────────────────────────────
     function descargarPDF() {
-        // Ocultar panel de edición temporalmente
         const editPanel = document.getElementById('edit-panel');
         const submitContainer = document.querySelector('.submit-container');
         if (editPanel) editPanel.style.display = 'none';
+        if (submitContainer) submitContainer.style.display = 'none';
 
         window.print();
 
-        // Restaurar panel después de imprimir
         setTimeout(function() {
             if (editPanel) editPanel.style.display = '';
+            if (submitContainer) submitContainer.style.display = '';
         }, 1000);
     }
 
