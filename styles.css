@@ -172,15 +172,15 @@ body {
     background-size: cover;
 }
 
-/* Submit Button floating at the bottom */
+/* Submit Button al final de la página, fuera de la ficha */
 .submit-container {
-    position: absolute;
-    bottom: -80px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: static;
     width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
     text-align: center;
-    padding-bottom: 40px;
+    padding: 30px 0 40px 0;
+    background-color: #ecf0f1;
 }
 
 #btn-submit {
