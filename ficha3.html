@@ -257,6 +257,46 @@
         }, 1000);
     }
     </script>
+     <!-- Controles de Edición para el Usuario -->
+    <div id="edit-panel" style="position: fixed; top: 10px; right: 10px; background: white; padding: 15px; border: 2px solid #e74c3c; border-radius: 8px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); width: 250px;">
+        <h4 style="color: #e74c3c; margin-bottom: 10px; text-align:center;">🛠️ Modo Edición Activo</h4>
+        
+        <label style="display: block; margin-bottom: 15px; cursor: pointer; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+            <input type="checkbox" id="edit-mode-toggle" checked> Permitir Arrastrar y Soltar
+        </label>
+        
+        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom: 15px;">
+            <button onclick="agregarTexto()" style="padding: 6px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x2795; Agregar Texto</button>
+            <button onclick="agregarFecha()" style="padding: 6px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F4C5; Agregar Fecha (DD/MM/AAAA)</button>
+            <button onclick="agregarFechaSeparada()" style="padding: 6px; background: #16a085; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F4C6; Fecha Separada (Día|Mes|Año)</button>
+            <button onclick="agregarDigitos()" style="padding: 6px; background: #8e44ad; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F522; Campo Dígito a Dígito (DNI)</button>
+            <button onclick="agregarCasilla()" style="padding: 6px; background: #9b59b6; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x2611;&#xFE0F; Casilla Múltiple</button>
+            <button onclick="agregarRadio()" style="padding: 6px; background: #e67e22; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F518; Opción Única (Solo 1)</button>
+            <button onclick="agregarSeleccion()" style="padding: 6px; background: #f39c12; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F53D; Agregar Selección</button>
+            
+            <div style="display:flex; gap: 4px;">
+                <button onclick="reducirAncho()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➖ Ancho</button>
+                <button onclick="aumentarAncho()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➕ Ancho</button>
+            </div>
+            <div style="display:flex; gap: 4px;">
+                <button onclick="reducirAlto()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➖ Alto</button>
+                <button onclick="aumentarAlto()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➕ Alto</button>
+            </div>
+            <div style="display:flex; gap: 4px;">
+                <button onclick="reducirLetra()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➖ Letra</button>
+                <button onclick="aumentarLetra()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➕ Letra</button>
+            </div>
+
+            <button onclick="borrarSeleccionado()" style="padding: 6px; background: #7f8c8d; color: white; border: none; border-radius: 4px; cursor: pointer;">🗑️ Borrar Seleccionado</button>
+            <button onclick="alinearEnFila()" style="padding: 6px; background: #1abc9c; color: white; border: none; border-radius: 4px; cursor: pointer;">📐 Alinear Grupo en Fila</button>
+        </div>
+
+        <button onclick="exportarPosiciones()" style="width: 100%; padding: 10px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">📋 Finalizar y Copiar Datos</button>
+        
+        <p style="font-size: 11px; margin-top: 10px; color: #555;">Haz clic en un cuadro para seleccionarlo (borde rojo). Usa los botones para agregar nuevos y luego envíame el resultado copiado.</p>
+    </div>
+</body>
+</html>
 
     <script src="app.js"></script>
 
