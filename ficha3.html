@@ -215,50 +215,122 @@
         <button type="button" id="btn-pdf" onclick="descargarPDF()" style="margin-top:10px; padding: 15px 40px; background-color: #e74c3c; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(231,76,60,0.4);">📄 Descargar PDF</button>
     </div>
 
-    <script>
-    const CREDENTIALS = { username: "minsa", password: "123" };
-
-    function login() {
-        const userIn = document.getElementById("username").value;
-        const passIn = document.getElementById("password").value;
-        const errorMsg = document.getElementById("login-error");
-        if (userIn === CREDENTIALS.username && passIn === CREDENTIALS.password) {
-            document.getElementById("login-container").style.display = "none";
-            document.getElementById("form-container").style.display = "flex";
-            document.querySelector(".submit-container").style.display = "block";
-        } else {
-            errorMsg.textContent = "Usuario o contraseña incorrectos.";
-        }
+     <script>
+    // Verificar sesión del menú
+    if (sessionStorage.getItem('autenticado') === 'true') {
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('form-container').style.display = 'flex';
+        });
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        if (sessionStorage.getItem("autenticado") === "true") {
-            document.getElementById("login-container").style.display = "none";
-            document.getElementById("form-container").style.display = "flex";
-            document.querySelector(".submit-container").style.display = "block";
-        }
-        // Cargar imagen base64
-        document.getElementById("ficha-bg").src = "sifilis_gonorrea.png";
-    });
-
-    document.getElementById("password") && document.getElementById("password").addEventListener("keypress", function(e) {
-        if (e.key === "Enter") login();
-    });
-
     function descargarPDF() {
-        const editPanel = document.getElementById("edit-panel");
-        const submitContainer = document.querySelector(".submit-container");
-        if (editPanel) editPanel.style.display = "none";
-        if (submitContainer) submitContainer.style.display = "none";
+        const editPanel = document.getElementById('edit-panel');
+        const submitContainer = document.querySelector('.submit-container');
+        if (editPanel) editPanel.style.display = 'none';
+
         window.print();
+
         setTimeout(function() {
-            if (editPanel) editPanel.style.display = "";
-            if (submitContainer) submitContainer.style.display = "";
+            if (editPanel) editPanel.style.display = '';
         }, 1000);
     }
     </script>
 
     <script src="app.js"></script>
+    <script src="edit_mode.js"></script>
+    <script>
+    // ── 1. Color mostaza → transparente al escribir ──────────────────────────
+    function initHasValue() {
+        document.querySelectorAll('.abs-input, .abs-fecha-seg, .abs-digito').forEach(el => {
+            if (el.value && el.value.trim() !== '') el.classList.add('has-value');
 
+            el.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    this.classList.add('has-value');
+                } else {
+                    this.classList.remove('has-value');
+                }
+            });
+        });
+    }
+
+    // ── 2. Auto-avance Día → Mes → Año ───────────────────────────────────────
+    function initFechasSeparadas() {
+        let grupos = {};
+        document.querySelectorAll('.abs-fecha-seg').forEach(el => {
+            let g = el.dataset.grupo;
+            if (!g) return;
+            if (!grupos[g]) grupos[g] = [];
+            grupos[g].push(el);
+        });
+        Object.values(grupos).forEach(campos => {
+            campos.forEach((el, idx) => {
+                el.addEventListener('input', function() {
+                    if (this.value.length === this.maxLength && idx < campos.length - 1) {
+                        campos[idx + 1].focus();
+                    }
+                });
+                el.addEventListener('keypress', function(e) {
+                    if (!/[0-9]/.test(e.key)) e.preventDefault();
+                });
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initFechasSeparadas();
+        initHasValue();
+    });
+
+    const _observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(m) {
+            if (m.target.id === 'form-container' && m.attributeName === 'style') {
+                initFechasSeparadas();
+                initHasValue();
+            }
+        });
+    });
+    _observer.observe(document.getElementById('form-container'), { attributes: true });
+    </script>
+    
+    <!-- Controles de Edición para el Usuario -->
+    <div id="edit-panel" style="position: fixed; top: 10px; right: 10px; background: white; padding: 15px; border: 2px solid #e74c3c; border-radius: 8px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); width: 250px;">
+        <h4 style="color: #e74c3c; margin-bottom: 10px; text-align:center;">🛠️ Modo Edición Activo</h4>
+        
+        <label style="display: block; margin-bottom: 15px; cursor: pointer; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+            <input type="checkbox" id="edit-mode-toggle" checked> Permitir Arrastrar y Soltar
+        </label>
+        
+        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom: 15px;">
+            <button onclick="agregarTexto()" style="padding: 6px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x2795; Agregar Texto</button>
+            <button onclick="agregarFecha()" style="padding: 6px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F4C5; Agregar Fecha (DD/MM/AAAA)</button>
+            <button onclick="agregarFechaSeparada()" style="padding: 6px; background: #16a085; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F4C6; Fecha Separada (Día|Mes|Año)</button>
+            <button onclick="agregarDigitos()" style="padding: 6px; background: #8e44ad; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F522; Campo Dígito a Dígito (DNI)</button>
+            <button onclick="agregarCasilla()" style="padding: 6px; background: #9b59b6; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x2611;&#xFE0F; Casilla Múltiple</button>
+            <button onclick="agregarRadio()" style="padding: 6px; background: #e67e22; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F518; Opción Única (Solo 1)</button>
+            <button onclick="agregarSeleccion()" style="padding: 6px; background: #f39c12; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F53D; Agregar Selección</button>
+            
+            <div style="display:flex; gap: 4px;">
+                <button onclick="reducirAncho()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➖ Ancho</button>
+                <button onclick="aumentarAncho()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➕ Ancho</button>
+            </div>
+            <div style="display:flex; gap: 4px;">
+                <button onclick="reducirAlto()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➖ Alto</button>
+                <button onclick="aumentarAlto()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➕ Alto</button>
+            </div>
+            <div style="display:flex; gap: 4px;">
+                <button onclick="reducirLetra()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➖ Letra</button>
+                <button onclick="aumentarLetra()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➕ Letra</button>
+            </div>
+
+            <button onclick="borrarSeleccionado()" style="padding: 6px; background: #7f8c8d; color: white; border: none; border-radius: 4px; cursor: pointer;">🗑️ Borrar Seleccionado</button>
+            <button onclick="alinearEnFila()" style="padding: 6px; background: #1abc9c; color: white; border: none; border-radius: 4px; cursor: pointer;">📐 Alinear Grupo en Fila</button>
+        </div>
+
+        <button onclick="exportarPosiciones()" style="width: 100%; padding: 10px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">📋 Finalizar y Copiar Datos</button>
+        
+        <p style="font-size: 11px; margin-top: 10px; color: #555;">Haz clic en un cuadro para seleccionarlo (borde rojo). Usa los botones para agregar nuevos y luego envíame el resultado copiado.</p>
+    </div>
 </body>
 </html>
