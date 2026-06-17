@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha Sífilis y Gonorrea</title>
+    <title>Ficha de Notificación SÍFILIS Y GONORRERA</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Override botones fuera de la ficha */
-        .submit-container {
-            position: static !important;
-            transform: none !important;
-            left: auto !important;
-            bottom: auto !important;
-            width: 100% !important;
-            max-width: 900px !important;
-            margin: 0 auto !important;
-            text-align: center !important;
-            padding: 30px 0 40px 0 !important;
-            background-color: #ecf0f1 !important;
+    @media print {
+        #login-container, #edit-panel { display: none !important; }
+        #form-container {
+            padding: 0 !important;
+            background: none !important;
+            min-height: unset !important;
         }
-        @media print {
-            #login-container, #edit-panel { display: none !important; }
-            #form-container { padding: 0 !important; background: none !important; min-height: unset !important; }
-            .document-wrapper { box-shadow: none !important; max-width: 100% !important; }
-            .submit-container { display: none !important; }
-            .abs-input, .abs-fecha-seg, .abs-digito { background-color: transparent !important; border: none !important; outline: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .abs-check, .abs-radio { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            body { margin: 0; padding: 0; }
-            @page { margin: 0; size: A4 portrait; }
+        .document-wrapper {
+            box-shadow: none !important;
+            max-width: 100% !important;
         }
+        .submit-container { display: none !important; }
+        .abs-input, .abs-fecha-seg, .abs-digito {
+            background-color: transparent !important;
+            border: none !important;
+            outline: none !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .abs-check, .abs-radio {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        body { margin: 0; padding: 0; }
+        @page { margin: 0; size: A4 portrait; }
+    }
     </style>
 </head>
 <body>
@@ -37,227 +40,320 @@
     <div id="login-container">
         <div class="login-box">
             <h2>Acceso a Ficha Epidemiológica</h2>
-            <p>Ingrese sus credenciales para continuar</p>
+            <p>Ficha SÍFILIS Y GONORREA - Ingrese sus credenciales</p>
             <div class="input-group">
-                <label for="username">Usuario</label>
-                <input type="text" id="username" placeholder="Usuario">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" placeholder="Ingrese el usuario">
             </div>
             <div class="input-group">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" placeholder="Contraseña">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" placeholder="Ingrese la contraseña">
             </div>
             <button id="btn-login" onclick="login()">Ingresar</button>
             <p id="login-error" class="error-msg"></p>
         </div>
     </div>
 
-    <!-- Form Container -->
+    <!-- Main Form Screen -->
     <div id="form-container" style="display: none;">
-        <button onclick="window.location.href='menu.html'" style="position:fixed;top:10px;left:10px;z-index:999;padding:8px 16px;background:#3498db;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:bold;">← Volver al Menú</button>
         <div class="document-wrapper">
-            <img class="document-bg" id="ficha-bg" src="" alt="Ficha Sífilis y Gonorrea">
-            <form id="epidemiology-form" autocomplete="off">
+            <img src="sifilis_gonorrea.png" alt="Ficha SÍFILIS Y GONORREA" class="document-bg" id="document-bg">
+            
+            <form id="epidemiology-form">
+                <input type="radio" name="Tipo_de_establecimiento" value="Hospital" class="abs-radio" style="top: 14.47%; left: 4.22%; height: 21px;">
+<input type="radio" name="Tipo_de_establecimiento" value="Puesto_de_salud" class="abs-radio" style="top: 16.47%; left: 4.11%; width: 2%; height: 19px;">
+<input type="radio" name="Tipo_de_establecimiento" value="Centro_de_Salud" class="abs-radio" style="top: 14.55%; left: 19.33%; height: 19px;">
+<input type="radio" name="Tipo_de_establecimiento" value="Otro" class="abs-radio" style="top: 16.55%; left: 19.22%; width: 2%; height: 17px; font-size: 14.3333px;">
+<input type="radio" name="Intitucion" value="Ministerio_de_Salud" class="abs-radio" style="top: 14.87%; left: 32.11%;">
+<input type="radio" name="Intitucion" value="EsSalud" class="abs-radio" style="top: 16.71%; left: 32.11%;">
+<input type="radio" name="Intitucion" value="FFAA/FFPP" class="abs-radio" style="top: 18.63%; left: 32.11%;">
+<input type="radio" name="Intitucion" value="Privado" class="abs-radio" style="top: 14.51%; left: 51.22%; height: 19px;">
+<input type="radio" name="Intitucion" value="INPE" class="abs-radio" style="top: 16.51%; left: 51.33%; height: 17px;">
+<input type="radio" name="Intitucion" value="Otro" class="abs-radio" style="top: 18.35%; left: 51.33%;">
+<input type="text" name="Fecha_de_notificacion_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_notificacion" data-idx="0" style="top: 16.44%; left: 63.56%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_notificacion_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_notificacion" data-idx="1" style="top: 16.21%; left: 65.43%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_notificacion_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_notificacion" data-idx="2" style="top: 16.21%; left: 69.31%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_notificacion_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_notificacion" data-idx="3" style="top: 16.21%; left: 71.63%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_notificacion_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_notificacion" data-idx="4" style="top: 16.28%; left: 80.62%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_notificacion_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_notificacion" data-idx="5" style="top: 16.21%; left: 82.61%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_notificacion_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_notificacion" data-idx="6" style="top: 16.28%; left: 85.04%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_notificacion_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_notificacion" data-idx="7" style="top: 16.21%; left: 87.26%; width: 2%; height: 22px;">
+<input type="text" name="DNI/PASAPORTE" class="abs-input" style="top: 29.56%; left: 16.33%; width: 20%;">
+<input type="text" name="INICIALES AP" class="abs-input" style="top: 23.35%; left: 6.22%; width: 2%; height: 18px; font-size: 8px;">
+<input type="text" name="INICIALES AM" class="abs-input" style="top: 23.43%; left: 8.78%; width: 2%; height: 18px; font-size: 8px;">
+<input type="text" name="INICIALES N1" class="abs-input" style="top: 23.51%; left: 13.67%; width: 2%; height: 16px; font-size: 8px;">
+<input type="text" name="INICIALES N2" class="abs-input" style="top: 23.51%; left: 15.89%; width: 2%; height: 16px; font-size: 8px;">
+<input type="text" name="Fecha_de_nacimiento_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_nacimiento" data-idx="0" style="top: 23.11%; left: 20.89%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_nacimiento_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_nacimiento" data-idx="1" style="top: 23.11%; left: 22.98%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_nacimiento_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_nacimiento" data-idx="2" style="top: 23.27%; left: 25.76%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_nacimiento_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_nacimiento" data-idx="3" style="top: 23.28%; left: 27.75%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_nacimiento_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_nacimiento" data-idx="4" style="top: 23.27%; left: 31.95%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_nacimiento_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_nacimiento" data-idx="5" style="top: 23.36%; left: 34.28%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_nacimiento_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_nacimiento" data-idx="6" style="top: 23.27%; left: 36.16%; width: 2%; height: 22px;">
+<input type="text" name="Fecha_de_nacimiento_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_nacimiento" data-idx="7" style="top: 23.2%; left: 38.47%; width: 2%; height: 22px;">
+<input type="text" name="Nacionalidad" class="abs-input" style="top: 32.54%; left: 79.22%; width: 14%;">
+<input type="text" name="Departamento" class="abs-input" style="top: 38.36%; left: 17%; width: 16%; height: 24px; font-size: 14px;">
+<input type="text" name="Provincia" class="abs-input" style="top: 41.66%; left: 17.22%; width: 16%;">
+<input type="text" name="Distrito" class="abs-input" style="top: 44.33%; left: 17.22%; width: 16%; height: 20px;">
+<input type="text" name="Comunidad" class="abs-input" style="top: 46.05%; left: 17.33%; width: 16%; height: 18px;">
+<input type="radio" name="Etnia" value="Mestizo" class="abs-radio" style="top: 37.81%; left: 35.33%;">
+<input type="radio" name="Etnia" value="Afrodescendiente" class="abs-radio" style="top: 39.41%; left: 35.33%;">
+<input type="radio" name="Etnia" value="Andino" class="abs-radio" style="top: 41.02%; left: 35%;">
+<input type="radio" name="Etnia" value="Indígena_Amazónico" class="abs-radio" style="top: 42.71%; left: 35%;">
+<input type="radio" name="Etnia" value="Asiático_descendiente" class="abs-radio" style="top: 44.39%; left: 35.11%;">
+<input type="radio" name="Etnia" value="Otro" class="abs-radio" style="top: 46%; left: 34.89%;">
+<input type="radio" name="Grado_de_institucion" value="Analfabeta" class="abs-radio" style="top: 39.38%; left: 53.67%;">
+<input type="radio" name="Grado_de_institucion" value="Primaria" class="abs-radio" style="top: 40.98%; left: 53.56%;">
+<input type="radio" name="Grado_de_institucion" value="Secundaria" class="abs-radio" style="top: 42.43%; left: 53.56%;">
+<input type="radio" name="Grado_de_institucion" value="Ténica" class="abs-radio" style="top: 44.04%; left: 53.56%;">
+<input type="radio" name="Grado_de_institucion" value="Universitaria" class="abs-radio" style="top: 45.89%; left: 53.67%;">
+<input type="radio" name="Condición_especial" value="Gestante" class="abs-radio" style="top: 37.89%; left: 66.33%;">
+<input type="radio" name="Condición_especial" value="Trabajador(a) sexual" class="abs-radio" style="top: 39.65%; left: 66.33%;">
+<input type="radio" name="Condición_especial" value="Privado de la libertad" class="abs-radio" style="top: 41.18%; left: 66.34%;">
+<input type="radio" name="Condición_especial" value="UDI" class="abs-radio" style="top: 43.02%; left: 66.44%;">
+<input type="radio" name="Condición_especial" value="Usuario de drogas no inyectables" class="abs-radio" style="top: 44.63%; left: 66.44%;">
+<input type="radio" name="Sexo_al_nacimiento" value="Mujer" class="abs-radio" style="top: 39.3%; left: 86.22%;">
+<input type="radio" name="Sexo_al_nacimiento" value="Hombre" class="abs-radio" style="top: 42.63%; left: 86.22%;">
+<input type="radio" name="Antecedentes_de_RS" value="RS con hombres" class="abs-radio" style="top: 50.61%; left: 24.33%;">
+<input type="radio" name="Antecedentes_de_RS" value="RS con mujeres" class="abs-radio" style="top: 50.73%; left: 39%;">
+<input type="radio" name="Antecedentes_de_RS" value="RS con ambos sexos" class="abs-radio" style="top: 50.6%; left: 54.56%;">
+<input type="radio" name="Antecedentes_de_RS" value="Desconocido" class="abs-radio" style="top: 50.64%; left: 75.45%;">
+<input type="radio" name="Identidad_de_genero" value="Femenino" class="abs-radio" style="top: 47.7%; left: 21.33%;">
+<input type="radio" name="Identidad_de_genero" value="Maculino" class="abs-radio" style="top: 47.82%; left: 32.89%;">
+<input type="radio" name="Identidad_de_genero" value="Transgénero masculino a femenino" class="abs-radio" style="top: 47.7%; left: 43.67%;">
+<input type="radio" name="Identidad_de_genero" value="Transgénero femenino a masculino" class="abs-radio" style="top: 48.91%; left: 21.33%;">
+<input type="radio" name="Identidad_de_genero" value="Otro" class="abs-radio" style="top: 49.02%; left: 46.89%;">
+<input type="radio" name="Identidad_de_genero" value="Desconocido" class="abs-radio" style="top: 48.91%; left: 69.89%;">
+<input type="radio" name="Via_de_trasmision_sexual" value="Heterosexual" class="abs-radio" style="top: 52.26%; left: 30.23%;">
+<input type="radio" name="Via_de_trasmision_sexual" value="Homosexual" class="abs-radio" style="top: 52.37%; left: 47.56%;">
+<input type="radio" name="Via_de_trasmision_sexual" value="Bisexual" class="abs-radio" style="top: 52.33%; left: 61.89%;">
+<input type="radio" name="Via_de_trasmision_sexual" value="No determiado" class="abs-radio" style="top: 52.37%; left: 74%;">
+<input type="radio" name="Via_de_transmision_parental" value="Transfusión de sangre y/o derivados" class="abs-radio" style="top: 53.83%; left: 30.11%;">
+<input type="radio" name="Via_de_transmision_parental" value="Compartir agujas /UDI" class="abs-radio" style="top: 53.71%; left: 61.11%;">
+<input type="radio" name="Via_de_transmision_parental" value="Accidente con material contaminado" class="abs-radio" style="top: 55.24%; left: 30.11%;">
+<input type="radio" name="Via_de_transmision_parental" value="Transporte de órganos o tejidos" class="abs-radio" style="top: 55.28%; left: 57.44%;">
+<input type="radio" name="Via_de_transmision_parental" value="No determinado" class="abs-radio" style="top: 55.31%; left: 79.33%;">
+<input type="radio" name="Via_de_transmision" value="Sexual" class="abs-radio" style="top: 52.26%; left: 19.34%;">
+<input type="radio" name="Via_de_transmision" value="Parental" class="abs-radio" style="top: 54.57%; left: 19.44%;">
+<input type="radio" name="Via_de_transmision" value="Madre - niño (Vertical)" class="abs-radio" style="top: 56.73%; left: 18.89%;">
+<input type="radio" name="Via_de_transmision" value="Desconocida" class="abs-radio" style="top: 58.1%; left: 19.22%;">
+<input type="text" name="19.Tamizaje_prueba1_fecha_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba1_fecha" data-idx="0" style="top: 62.16%; left: 25.56%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba1_fecha_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba1_fecha" data-idx="1" style="top: 62.24%; left: 27.38%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba1_fecha_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba1_fecha" data-idx="2" style="top: 62.08%; left: 29.87%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba1_fecha_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba1_fecha" data-idx="3" style="top: 62.13%; left: 31.47%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba1_fecha_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba1_fecha" data-idx="4" style="top: 62.08%; left: 34.96%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba1_fecha_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba1_fecha" data-idx="5" style="top: 62.16%; left: 36.56%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba1_fecha_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba1_fecha" data-idx="6" style="top: 62.13%; left: 38.27%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba1_fecha_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba1_fecha" data-idx="7" style="top: 62.23%; left: 39.98%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba2_fecha_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba2_fecha" data-idx="0" style="top: 62.2%; left: 43%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba2_fecha_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba2_fecha" data-idx="1" style="top: 62.16%; left: 44.82%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba2_fecha_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba2_fecha" data-idx="2" style="top: 62.12%; left: 48.2%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba2_fecha_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba2_fecha" data-idx="3" style="top: 62.24%; left: 50.03%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba2_fecha_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba2_fecha" data-idx="4" style="top: 62.16%; left: 52.73%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba2_fecha_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba2_fecha" data-idx="5" style="top: 62.08%; left: 54.67%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba2_fecha_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba2_fecha" data-idx="6" style="top: 62.16%; left: 56.71%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Tamizaje_prueba2_fecha_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Tamizaje_prueba2_fecha" data-idx="7" style="top: 62.15%; left: 58.31%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba1_fecha_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba1_fecha" data-idx="0" style="top: 62.16%; left: 61.67%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba1_fecha_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba1_fecha" data-idx="1" style="top: 62.08%; left: 63.16%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba1_fecha_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba1_fecha" data-idx="2" style="top: 62.24%; left: 65.53%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba1_fecha_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba1_fecha" data-idx="3" style="top: 62.28%; left: 67.36%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba1_fecha_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba1_fecha" data-idx="4" style="top: 62.24%; left: 69.96%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba1_fecha_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba1_fecha" data-idx="5" style="top: 62.26%; left: 71.45%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba1_fecha_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba1_fecha" data-idx="6" style="top: 62.24%; left: 73.27%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba1_fecha_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba1_fecha" data-idx="7" style="top: 62.24%; left: 74.98%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba2_fecha_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba2_fecha" data-idx="0" style="top: 62.32%; left: 78.11%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba2_fecha_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba2_fecha" data-idx="1" style="top: 62.16%; left: 79.93%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba2_fecha_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba2_fecha" data-idx="2" style="top: 62%; left: 82.53%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba2_fecha_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba2_fecha" data-idx="3" style="top: 62.16%; left: 84.36%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba2_fecha_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba2_fecha" data-idx="4" style="top: 62%; left: 87.07%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba2_fecha_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba2_fecha" data-idx="5" style="top: 62.24%; left: 88.89%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba2_fecha_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba2_fecha" data-idx="6" style="top: 62.16%; left: 90.6%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="text" name="19.Positivas_prueba2_fecha_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="19.Positivas_prueba2_fecha" data-idx="7" style="top: 62.16%; left: 92.31%; width: 1.5%; height: 14px; font-size: 9px;">
+<input type="radio" name="19.tipo_tamizaje_prueba1" value="Prueba Rápida" class="abs-radio" style="top: 64.75%; left: 26.22%;">
+<input type="radio" name="19.tipo_tamizaje_prueba1" value="Prueba de ELISA" class="abs-radio" style="top: 66.28%; left: 26.11%;">
+<input type="radio" name="19.tipo_tamizaje_prueba2" value="Prueba Rápida" class="abs-radio" style="top: 64.59%; left: 43.11%;">
+<input type="radio" name="19.tipo_tamizaje_prueba2" value="Prueba de ELISA" class="abs-radio" style="top: 66.2%; left: 43%;">
+<input type="radio" name="19.tipo_positiva_prueba1" value="Westem blot" class="abs-radio" style="top: 64.67%; left: 62.11%;">
+<input type="radio" name="19.tipo_positiva_prueba1" value="LIA" class="abs-radio" style="top: 66.2%; left: 62%;">
+<input type="radio" name="19.tipo_positiva_prueba1" value="IFI" class="abs-radio" style="top: 64.59%; left: 72.67%;">
+<input type="radio" name="19.tipo_positiva_prueba1" value="PCR" class="abs-radio" style="top: 66.04%; left: 72.22%;">
+<input type="radio" name="19.tipo_positiva_prueba2" value="Westem blot" class="abs-radio" style="top: 64.75%; left: 78.44%;">
+<input type="radio" name="19.tipo_positiva_prueba2" value="LIA" class="abs-radio" style="top: 66.2%; left: 78.56%;">
+<input type="radio" name="19.tipo_positiva_prueba2" value="IFI" class="abs-radio" style="top: 64.66%; left: 89%;">
+<input type="radio" name="19.tipo_positiva_prueba2" value="PCR" class="abs-radio" style="top: 66.12%; left: 88.33%;">
+<input type="text" name="20.Fecha_tamizaje_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Fecha_tamizaje" data-idx="0" style="top: 67.47%; left: 29.22%; width: 2%; height: 16px;">
+<input type="text" name="20.Fecha_tamizaje_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Fecha_tamizaje" data-idx="1" style="top: 67.58%; left: 31.77%; width: 2%; height: 16px;">
+<input type="text" name="20.Fecha_tamizaje_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Fecha_tamizaje" data-idx="2" style="top: 67.66%; left: 37.42%; width: 2%; height: 16px;">
+<input type="text" name="20.Fecha_tamizaje_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Fecha_tamizaje" data-idx="3" style="top: 67.66%; left: 40.19%; width: 2%; height: 16px;">
+<input type="text" name="20.Fecha_tamizaje_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Fecha_tamizaje" data-idx="4" style="top: 67.62%; left: 46.51%; width: 2%; height: 16px;">
+<input type="text" name="20.Fecha_tamizaje_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Fecha_tamizaje" data-idx="5" style="top: 67.58%; left: 48.94%; width: 2%; height: 16px;">
+<input type="text" name="20.Fecha_tamizaje_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Fecha_tamizaje" data-idx="6" style="top: 67.55%; left: 51.04%; width: 2%; height: 16px;">
+<input type="text" name="20.Fecha_tamizaje_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Fecha_tamizaje" data-idx="7" style="top: 67.62%; left: 53.48%; width: 2%; height: 16px;">
+<input type="text" name="20.Positivas_fecha_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Positivas_fecha" data-idx="0" style="top: 67.58%; left: 63.67%; width: 2%; height: 16px;">
+<input type="text" name="20.Positivas_fecha_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Positivas_fecha" data-idx="1" style="top: 67.66%; left: 65.99%; width: 2%; height: 16px;">
+<input type="text" name="20.Positivas_fecha_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Positivas_fecha" data-idx="2" style="top: 67.66%; left: 70.53%; width: 2%; height: 16px;">
+<input type="text" name="20.Positivas_fecha_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Positivas_fecha" data-idx="3" style="top: 67.62%; left: 73.08%; width: 2%; height: 16px;">
+<input type="text" name="20.Positivas_fecha_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Positivas_fecha" data-idx="4" style="top: 67.58%; left: 78.07%; width: 2%; height: 16px;">
+<input type="text" name="20.Positivas_fecha_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Positivas_fecha" data-idx="5" style="top: 67.66%; left: 80.72%; width: 2%; height: 16px;">
+<input type="text" name="20.Positivas_fecha_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Positivas_fecha" data-idx="6" style="top: 67.66%; left: 82.93%; width: 2%; height: 16px;">
+<input type="text" name="20.Positivas_fecha_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="20.Positivas_fecha" data-idx="7" style="top: 67.58%; left: 85.25%; width: 2%; height: 16px;">
+<input type="radio" name="20. Prueba_tamizaje_tipo" value="ELISA" class="abs-radio" style="top: 70.72%; left: 25.89%;">
+<input type="radio" name="20. Prueba_tamizaje_tipo" value="EFI" class="abs-radio" style="top: 70.68%; left: 34.22%;">
+<input type="radio" name="20. Prueba_tamizaje_tipo" value="Western Blot" class="abs-radio" style="top: 70.64%; left: 40.67%;">
+<input type="radio" name="20. Prueba_tamizaje_tipo" value="PCR" class="abs-radio" style="top: 70.59%; left: 53.89%;">
+<input type="radio" name="20.Prueba_positiva_tipo" value="ELISA" class="abs-radio" style="top: 70.72%; left: 61.67%;">
+<input type="radio" name="20.Prueba_positiva_tipo" value="IFI" class="abs-radio" style="top: 70.6%; left: 69.22%;">
+<input type="radio" name="20.Prueba_positiva_tipo" value="Western Blot" class="abs-radio" style="top: 70.55%; left: 75.89%;">
+<input type="radio" name="20.Prueba_positiva_tipo" value="PCR" class="abs-radio" style="top: 70.44%; left: 87.78%;">
+<input type="text" name="21.Fecha_de_inicio_de_tratamiento_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Fecha_de_inicio_de_tratamiento" data-idx="0" style="top: 72.92%; left: 44.89%; width: 2%; height: 14px;">
+<input type="text" name="21.Fecha_de_inicio_de_tratamiento_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Fecha_de_inicio_de_tratamiento" data-idx="1" style="top: 72.92%; left: 47.21%; width: 2%; height: 14px;">
+<input type="text" name="21.Fecha_de_inicio_de_tratamiento_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Fecha_de_inicio_de_tratamiento" data-idx="2" style="top: 73%; left: 53.53%; width: 2%; height: 14px;">
+<input type="text" name="21.Fecha_de_inicio_de_tratamiento_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Fecha_de_inicio_de_tratamiento" data-idx="3" style="top: 72.92%; left: 56.3%; width: 2%; height: 14px;">
+<input type="text" name="21.Fecha_de_inicio_de_tratamiento_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Fecha_de_inicio_de_tratamiento" data-idx="4" style="top: 72.92%; left: 63.73%; width: 2%; height: 14px;">
+<input type="text" name="21.Fecha_de_inicio_de_tratamiento_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Fecha_de_inicio_de_tratamiento" data-idx="5" style="top: 72.92%; left: 66.5%; width: 2%; height: 14px;">
+<input type="text" name="21.Fecha_de_inicio_de_tratamiento_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Fecha_de_inicio_de_tratamiento" data-idx="6" style="top: 72.89%; left: 69.38%; width: 2%; height: 14px;">
+<input type="text" name="21.Fecha_de_inicio_de_tratamiento_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Fecha_de_inicio_de_tratamiento" data-idx="7" style="top: 72.92%; left: 71.81%; width: 2%; height: 14px;">
+<input type="text" name="21.Estado_Fecha_de_diagnóstico_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Estado_Fecha_de_diagnóstico" data-idx="0" style="top: 75.2%; left: 38.56%; width: 2%; height: 18px;">
+<input type="text" name="21.Estado_Fecha_de_diagnóstico_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Estado_Fecha_de_diagnóstico" data-idx="1" style="top: 75.28%; left: 40.54%; width: 2%; height: 16px;">
+<input type="text" name="21.Estado_Fecha_de_diagnóstico_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Estado_Fecha_de_diagnóstico" data-idx="2" style="top: 75.35%; left: 42.87%; width: 2%; height: 16px;">
+<input type="text" name="21.Estado_Fecha_de_diagnóstico_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Estado_Fecha_de_diagnóstico" data-idx="3" style="top: 75.2%; left: 45.41%; width: 2%; height: 16px;">
+<input type="text" name="21.Estado_Fecha_de_diagnóstico_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Estado_Fecha_de_diagnóstico" data-idx="4" style="top: 75.35%; left: 48.84%; width: 2%; height: 16px;">
+<input type="text" name="21.Estado_Fecha_de_diagnóstico_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Estado_Fecha_de_diagnóstico" data-idx="5" style="top: 75.35%; left: 50.94%; width: 2%; height: 16px;">
+<input type="text" name="21.Estado_Fecha_de_diagnóstico_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Estado_Fecha_de_diagnóstico" data-idx="6" style="top: 75.19%; left: 53.49%; width: 2%; height: 16px;">
+<input type="text" name="21.Estado_Fecha_de_diagnóstico_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="21.Estado_Fecha_de_diagnóstico" data-idx="7" style="top: 75.28%; left: 56.26%; width: 2%; height: 16px;">
+<input type="radio" name="20.Criterio_de_diagnóstico" value="CD4" class="abs-radio" style="top: 75.35%; left: 78.78%;">
+<input type="radio" name="20.Criterio_de_diagnóstico" value="Enfermedad indicadora" class="abs-radio" style="top: 76.57%; left: 78.78%;">
+<input type="text" name="22.enfermedades_indicadoras_de_SIDA" class="abs-input" style="top: 79.64%; left: 19.56%; width: 56%; height: 18px;">
+<input type="text" name="22.Enfermedades_indicadoras_de_SIDA2" class="abs-input" style="top: 81.37%; left: 19.56%; width: 56%; height: 18px;">
+<input type="text" name="22.Codigo_1" class="abs-input" style="top: 79.6%; left: 77%; width: 16%; height: 18px;">
+<input type="text" name="22.Codigo_2" class="abs-input" style="top: 81.4%; left: 77.22%; width: 16%; height: 18px;">
+<input type="text" name="23.Tuberculosis_dia" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="23.Tuberculosis" placeholder="DD" style="top: 82.94%; left: 27.22%; width: 3%; height: 14px; font-size: 11px;">
+<input type="text" name="23.Tuberculosis_mes" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="23.Tuberculosis" placeholder="MM" style="top: 82.94%; left: 30.78%; width: 3%; height: 13px; font-size: 11px;">
+<input type="text" name="23.Tuberculosis_anio" class="abs-fecha-seg" maxlength="4" data-tipo="fecha_seg" data-grupo="23.Tuberculosis" placeholder="AAAA" style="top: 82.87%; left: 34.22%; width: 4.5%; height: 15px; font-size: 10px;">
+<input type="text" name="23.hepatitis_B_dia" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="23.hepatitis_B" placeholder="DD" style="top: 82.89%; left: 44.78%; width: 3%; height: 15px; font-size: 10px;">
+<input type="text" name="23.hepatitis_B_mes" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="23.hepatitis_B" placeholder="MM" style="top: 82.97%; left: 48.77%; width: 3%; height: 15px; font-size: 10px;">
+<input type="text" name="23.hepatitis_B_anio" class="abs-fecha-seg" maxlength="4" data-tipo="fecha_seg" data-grupo="23.hepatitis_B" placeholder="AAAA" style="top: 82.9%; left: 52.89%; width: 4.5%; height: 15px; font-size: 10px;">
+<input type="text" name="23.Hepatitis_C_dia" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="23.Hepatitis_C" placeholder="DD" style="top: 83.07%; left: 76.22%; width: 3%; height: 15px; font-size: 10px;">
+<input type="text" name="23.Hepatitis_C_mes" class="abs-fecha-seg" maxlength="2" data-tipo="fecha_seg" data-grupo="23.Hepatitis_C" placeholder="MM" style="top: 83.07%; left: 80.11%; width: 3%; height: 15px; font-size: 10px;">
+<input type="text" name="23.Hepatitis_C_anio" class="abs-fecha-seg" maxlength="4" data-tipo="fecha_seg" data-grupo="23.Hepatitis_C" placeholder="AAAA" style="top: 83.05%; left: 84%; width: 4.5%; height: 15px; font-size: 10px;">
+<input type="text" name="24.Defuncion_1" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="24.Defuncion" data-idx="0" style="top: 87.4%; left: 20.89%; width: 2%; height: 22px;">
+<input type="text" name="24.Defuncion_2" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="24.Defuncion" data-idx="1" style="top: 87.35%; left: 22.88%; width: 2%; height: 22px;">
+<input type="text" name="24.Defuncion_3" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="24.Defuncion" data-idx="2" style="top: 87.27%; left: 25.98%; width: 2%; height: 22px;">
+<input type="text" name="24.Defuncion_4" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="24.Defuncion" data-idx="3" style="top: 87.35%; left: 28.08%; width: 2%; height: 22px;">
+<input type="text" name="24.Defuncion_5" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="24.Defuncion" data-idx="4" style="top: 87.42%; left: 31.84%; width: 2%; height: 22px;">
+<input type="text" name="24.Defuncion_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="24.Defuncion" data-idx="5" style="top: 87.35%; left: 34.17%; width: 2%; height: 22px;">
+<input type="text" name="24.Defuncion_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="24.Defuncion" data-idx="6" style="top: 87.4%; left: 36.6%; width: 2%; height: 22px;">
+<input type="text" name="24.Defuncion_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="24.Defuncion" data-idx="7" style="top: 87.42%; left: 38.59%; width: 2%; height: 22px;">
+<input type="radio" name="24.Defuncion_relacionada_a_SIDA" value="Si" class="abs-radio" style="top: 86.17%; left: 71.56%;">
+<input type="radio" name="24.Defuncion_relacionada_a_SIDA" value="No" class="abs-radio" style="top: 86.18%; left: 81.33%;">
+<input type="text" name="24.Causa_de_muerte" class="abs-input" style="top: 87.82%; left: 66.67%; width: 26%;">
+<input type="text" name="25.Responsable_de_notificación" class="abs-input" style="top: 90.33%; left: 28.55%; width: 36%;">
+<input type="radio" name="8.Motivo_de_la_notificación" value="Infección por VIH" class="abs-radio" style="top: 22.41%; left: 43.11%;">
+<input type="radio" name="8.Motivo_de_la_notificación" value="Niño nnacido expuesto al VIH" class="abs-radio" style="top: 31.95%; left: 43%;">
+<input type="radio" name="8.Motivo_de_la_notificación" value="Niño nacido expuesto no infectado por VIH" class="abs-radio" style="top: 33.72%; left: 43%;">
+<input type="radio" name="Infección_por_VIH" value="Caso de VIH Avanzado" class="abs-radio" style="top: 23.43%; left: 47.11%;">
+<input type="radio" name="Infección_por_VIH" value="Caso de SIDA" class="abs-radio" style="top: 25.04%; left: 47.11%;">
+<input type="radio" name="Infección_por_VIH" value="Gestante con VIH" class="abs-radio" style="top: 26.41%; left: 47.11%;">
+<input type="radio" name="Infección_por_VIH" value="Niño nacido expuesto infectado por VIH" class="abs-radio" style="top: 27.54%; left: 47.11%;">
+<input type="radio" name="Infección_por_VIH" value="Caso de fallecido co VIH o SIDA" class="abs-radio" style="top: 28.99%; left: 47.11%;">
+<input type="radio" name="Infección_por_VIH" value="Inicio de Targa" class="abs-radio" style="top: 30.37%; left: 47.11%;">
+<input type="text" name="LA LIBERTAD" class="abs-input" style="top: 10.62%; left: 23.44%; width: 16%;">
+<select name="Etsablecimiento_de_Salud_notificante" class="abs-input" style="top: 10.62%; left: 64.99%; width: 26%; height: 24px; font-size: 10px;"><option value="H. ALTA COMPLEJ. VIRGEN DE LA PUERTA">H. ALTA COMPLEJ. VIRGEN DE LA PUERTA</option><option value="H. VICTOR LAZARTE ECHEGARAY">H. VICTOR LAZARTE ECHEGARAY</option><option value="H.II CHOCOPE">H.II CHOCOPE</option><option value="H.I ALBRECHT">H.I ALBRECHT</option><option value="H.I PACASMAYO">H.I PACASMAYO</option><option value="H.I FLORENCIA DE MORA">H.I FLORENCIA DE MORA</option><option value="H.I LA ESPERANZA">H.I LA ESPERANZA</option><option value="H.I MOCHE">H.I MOCHE</option><option value="H.I. VICTOR SOLES">H.I. VICTOR SOLES</option><option value="P. EL PORVENIR">P. EL PORVENIR</option><option value="P. VICTOR LARCO HERRERA">P. VICTOR LARCO HERRERA</option><option value="CM. ASCOPE">CM. ASCOPE</option><option value="CM. ESP.CASA GRANDE">CM. ESP.CASA GRANDE</option><option value="CM. HUANCHACO">CM. HUANCHACO</option><option value="CAP.III METROPOLITANO">CAP.III METROPOLITANO</option><option value="CAP.II GUADALUPE">CAP.II GUADALUPE</option><option value="CAP.II HUAMACHUCO">CAP.II HUAMACHUCO</option><option value="CAP.II LAREDO">CAP.II LAREDO</option><option value="CAP.II OTUZCO">CAP.II OTUZCO</option><option value="CAP.II SOLEDAD">CAP.II SOLEDAD</option><option value="CAP.II TAYABAMBA">CAP.II TAYABAMBA</option><option value="CAP.I CASCAS">CAP.I CASCAS</option><option value="CAP.I CHICAMA">CAP.I CHICAMA</option><option value="CAP.I MALABRIGO">CAP.I MALABRIGO</option><option value="CAP.I SALAVERRY">CAP.I SALAVERRY</option><option value="CAP.I SAN PEDRO">CAP.I SAN PEDRO</option><option value="PM. PAIJAN">PM. PAIJAN</option><option value="PM. CARTAVIO">PM. CARTAVIO</option><option value="PM. JEQUETEPEQUE">PM. JEQUETEPEQUE</option><option value="PM. LIMONCARRO">PM. LIMONCARRO</option><option value="PM. QUIRUVILCA">PM. QUIRUVILCA</option><option value="PM. SAN JOSÉ">PM. SAN JOSÉ</option><option value="PM. SANTIAGO DE CHUCO">PM. SANTIAGO DE CHUCO</option><option value="PM. SAUSAL">PM. SAUSAL</option><option value="PM. CHAO">PM. CHAO</option><option value="PM. SANTIAGO DE CAO">PM. SANTIAGO DE CAO</option></select>
+<input type="radio" name="Estadio_de_infección_VIH" value="Estadio 1" class="abs-radio" style="top: 22.17%; left: 78.33%;">
+<input type="radio" name="Estadio_de_infección_VIH" value="Estadio 2 (Avanzado)" class="abs-radio" style="top: 23.54%; left: 78.22%;">
+<input type="radio" name="Estadio_de_infección_VIH" value="Estadio 3 (SIDA)" class="abs-radio" style="top: 25.23%; left: 78.44%;">
+<input type="radio" name="Estadio_de_infección_VIH" value="Desconocido" class="abs-radio" style="top: 27.78%; left: 78.33%;">
 
-                <!-- 1. DIRESA -->
-                <input class="abs-input" name="DIRESA" style="top:8.5%;left:17%;width:18%;" placeholder="">
-                <!-- 2. Establecimiento Notificante -->
-                <input class="abs-input" name="establecimiento_notificante" style="top:8.5%;left:52%;width:28%;" placeholder="">
-
-                <!-- 3. Tipo establecimiento -->
-                <input type="checkbox" class="abs-check" name="tipo_hospital" style="top:12.2%;left:3.5%;">
-                <input type="checkbox" class="abs-check" name="tipo_centro_salud" style="top:12.2%;left:17%;">
-                <input type="checkbox" class="abs-check" name="tipo_CERITSS" style="top:13.8%;left:3.5%;">
-                <input type="checkbox" class="abs-check" name="tipo_otro" style="top:13.8%;left:17%;">
-
-                <!-- 4. Institución -->
-                <input type="checkbox" class="abs-check" name="inst_MINSA" style="top:12.2%;left:36%;">
-                <input type="checkbox" class="abs-check" name="inst_privado" style="top:12.2%;left:49%;">
-                <input type="checkbox" class="abs-check" name="inst_EsSalud" style="top:13.8%;left:36%;">
-                <input type="checkbox" class="abs-check" name="inst_INPE" style="top:13.8%;left:49%;">
-                <input type="checkbox" class="abs-check" name="inst_FFAA" style="top:15.4%;left:36%;">
-                <input type="checkbox" class="abs-check" name="inst_otro" style="top:15.4%;left:49%;">
-
-                <!-- 5. Fecha Notificación -->
-                <input class="abs-fecha-seg" name="fecha_notif_dia" style="top:12.5%;left:72%;width:4%;" maxlength="2" placeholder="">
-                <input class="abs-fecha-seg" name="fecha_notif_mes" style="top:12.5%;left:79%;width:4%;" maxlength="2" placeholder="">
-                <input class="abs-fecha-seg" name="fecha_notif_anio" style="top:12.5%;left:86%;width:7%;" maxlength="4" placeholder="">
-
-                <!-- 6. Fecha Nacimiento -->
-                <input class="abs-fecha-seg" name="fecha_nac_dia" style="top:18.2%;left:13%;width:4%;" maxlength="2" placeholder="">
-                <input class="abs-fecha-seg" name="fecha_nac_mes" style="top:18.2%;left:20%;width:4%;" maxlength="2" placeholder="">
-                <input class="abs-fecha-seg" name="fecha_nac_anio" style="top:18.2%;left:28%;width:7%;" maxlength="4" placeholder="">
-
-                <!-- 8. Motivo notificación -->
-                <input type="checkbox" class="abs-check" name="motivo_prob_sifilis" style="top:18.5%;left:52%;">
-                <input type="checkbox" class="abs-check" name="motivo_conf_sifilis" style="top:20.3%;left:52%;">
-                <input type="checkbox" class="abs-check" name="motivo_desc_sifilis" style="top:22%;left:52%;">
-                <input type="checkbox" class="abs-check" name="motivo_gonorrea" style="top:23.8%;left:52%;">
-
-                <!-- 7. DNI y Teléfono -->
-                <input class="abs-input" name="DNI" style="top:21%;left:17%;width:25%;" placeholder="">
-                <input class="abs-input" name="telefono" style="top:23.5%;left:17%;width:25%;" placeholder="">
-
-                <!-- 9. Apellidos y Nombres -->
-                <input class="abs-input" name="apellidos_nombres" style="top:26.8%;left:20%;width:75%;" placeholder="">
-
-                <!-- 10. Residencia -->
-                <input class="abs-input" name="departamento" style="top:30.5%;left:5%;width:28%;" placeholder="">
-                <input class="abs-input" name="provincia" style="top:32.5%;left:5%;width:28%;" placeholder="">
-                <input class="abs-input" name="distrito" style="top:34.5%;left:5%;width:28%;" placeholder="">
-                <input class="abs-input" name="comunidad" style="top:36.5%;left:5%;width:28%;" placeholder="">
-
-                <!-- 11. Etnia -->
-                <input type="checkbox" class="abs-check" name="etnia_mestizo" style="top:30%;left:37%;">
-                <input type="checkbox" class="abs-check" name="etnia_afro" style="top:32%;left:37%;">
-                <input type="checkbox" class="abs-check" name="etnia_andino" style="top:34%;left:37%;">
-                <input type="checkbox" class="abs-check" name="etnia_indigena" style="top:36%;left:37%;">
-                <input type="checkbox" class="abs-check" name="etnia_asiatico" style="top:38%;left:37%;">
-                <input type="checkbox" class="abs-check" name="etnia_otro" style="top:40%;left:37%;">
-
-                <!-- 12. Grado instrucción -->
-                <input type="checkbox" class="abs-check" name="grado_analfabeta" style="top:30%;left:58%;">
-                <input type="checkbox" class="abs-check" name="grado_primaria" style="top:32%;left:58%;">
-                <input type="checkbox" class="abs-check" name="grado_secundaria" style="top:34%;left:58%;">
-                <input type="checkbox" class="abs-check" name="grado_tecnica" style="top:36%;left:58%;">
-                <input type="checkbox" class="abs-check" name="grado_universitaria" style="top:38%;left:58%;">
-
-                <!-- 13. Condición especial -->
-                <input type="checkbox" class="abs-check" name="cond_trab_sexual" style="top:30%;left:78%;">
-                <input type="checkbox" class="abs-check" name="cond_privado_libertad" style="top:33%;left:78%;">
-                <input type="checkbox" class="abs-check" name="cond_usuario_trabajo" style="top:36%;left:78%;">
-
-                <!-- 14. Sexo -->
-                <input type="checkbox" class="abs-check" name="sexo_femenino" style="top:43.5%;left:3.5%;">
-                <input type="checkbox" class="abs-check" name="sexo_masculino" style="top:46%;left:3.5%;">
-
-                <!-- 15. Identidad género -->
-                <input type="checkbox" class="abs-check" name="id_gen_masculino" style="top:42%;left:18%;">
-                <input type="checkbox" class="abs-check" name="id_gen_femenino" style="top:43.5%;left:18%;">
-                <input type="checkbox" class="abs-check" name="id_gen_trans_mf" style="top:45%;left:18%;">
-                <input type="checkbox" class="abs-check" name="id_gen_trans_fm" style="top:46.5%;left:18%;">
-                <input class="abs-input" name="id_gen_otro" style="top:48%;left:21%;width:10%;" placeholder="">
-                <input type="checkbox" class="abs-check" name="id_gen_desconocido" style="top:49.5%;left:18%;">
-
-                <!-- 16. Orientación sexual -->
-                <input type="checkbox" class="abs-check" name="orient_hetero" style="top:42%;left:48%;">
-                <input type="checkbox" class="abs-check" name="orient_homo" style="top:43.8%;left:48%;">
-                <input type="checkbox" class="abs-check" name="orient_bisexual" style="top:45.5%;left:48%;">
-                <input type="checkbox" class="abs-check" name="orient_desconocido" style="top:47.3%;left:48%;">
-
-                <!-- 17. Estadio clínico sífilis -->
-                <input type="checkbox" class="abs-check" name="estadio_primaria" style="top:42%;left:72%;">
-                <input type="checkbox" class="abs-check" name="estadio_secundaria" style="top:43.8%;left:72%;">
-                <input type="checkbox" class="abs-check" name="estadio_latente" style="top:45.5%;left:72%;">
-                <input type="checkbox" class="abs-check" name="estadio_terciaria" style="top:47.3%;left:72%;">
-                <input type="checkbox" class="abs-check" name="estadio_no_det" style="top:49%;left:72%;">
-
-                <!-- 18. Pruebas diagnósticas - Fechas -->
-                <!-- Sífilis No Treponémica -->
-                <input class="abs-fecha-seg" name="sif_no_trep_dia" style="top:56%;left:12%;width:4%;" maxlength="2">
-                <input class="abs-fecha-seg" name="sif_no_trep_mes" style="top:56%;left:17%;width:4%;" maxlength="2">
-                <input class="abs-fecha-seg" name="sif_no_trep_anio" style="top:56%;left:22%;width:6%;" maxlength="4">
-                <input type="checkbox" class="abs-check" name="tipo_RPR" style="top:59%;left:12%;">
-                <input type="checkbox" class="abs-check" name="tipo_VDRL" style="top:61%;left:12%;">
-
-                <!-- Sífilis Treponémica -->
-                <input class="abs-fecha-seg" name="sif_trep_dia" style="top:56%;left:32%;width:4%;" maxlength="2">
-                <input class="abs-fecha-seg" name="sif_trep_mes" style="top:56%;left:37%;width:4%;" maxlength="2">
-                <input class="abs-fecha-seg" name="sif_trep_anio" style="top:56%;left:42%;width:6%;" maxlength="4">
-                <input type="checkbox" class="abs-check" name="tipo_TPHA" style="top:59%;left:32%;">
-                <input type="checkbox" class="abs-check" name="tipo_TPPA" style="top:61%;left:32%;">
-                <input type="checkbox" class="abs-check" name="tipo_FTA" style="top:63%;left:32%;">
-                <input type="checkbox" class="abs-check" name="tipo_prueba_rapida" style="top:65%;left:32%;">
-                <input type="checkbox" class="abs-check" name="tipo_prueba_rapida_dual" style="top:67%;left:32%;">
-
-                <!-- Gonorrea Prueba 1 -->
-                <input class="abs-fecha-seg" name="gon_p1_dia" style="top:56%;left:54%;width:4%;" maxlength="2">
-                <input class="abs-fecha-seg" name="gon_p1_mes" style="top:56%;left:59%;width:4%;" maxlength="2">
-                <input class="abs-fecha-seg" name="gon_p1_anio" style="top:56%;left:64%;width:6%;" maxlength="4">
-                <input type="checkbox" class="abs-check" name="gon_p1_tincion" style="top:59%;left:54%;">
-                <input type="checkbox" class="abs-check" name="gon_p1_cultivo" style="top:61%;left:54%;">
-                <input type="checkbox" class="abs-check" name="gon_p1_PCR" style="top:63%;left:54%;">
-
-                <!-- Gonorrea Prueba 2 -->
-                <input class="abs-fecha-seg" name="gon_p2_dia" style="top:56%;left:76%;width:4%;" maxlength="2">
-                <input class="abs-fecha-seg" name="gon_p2_mes" style="top:56%;left:81%;width:4%;" maxlength="2">
-                <input class="abs-fecha-seg" name="gon_p2_anio" style="top:56%;left:86%;width:6%;" maxlength="4">
-                <input type="checkbox" class="abs-check" name="gon_p2_tincion" style="top:59%;left:76%;">
-                <input type="checkbox" class="abs-check" name="gon_p2_cultivo" style="top:61%;left:76%;">
-                <input type="checkbox" class="abs-check" name="gon_p2_PCR" style="top:63%;left:76%;">
-
-                <!-- 19. Infección concurrente -->
-                <input type="checkbox" class="abs-check" name="conc_VIH" style="top:72%;left:3.5%;">
-                <input type="checkbox" class="abs-check" name="conc_sifilis" style="top:74%;left:3.5%;">
-                <input type="checkbox" class="abs-check" name="conc_herpes" style="top:76%;left:3.5%;">
-                <input type="checkbox" class="abs-check" name="conc_hepatitis_b" style="top:78%;left:3.5%;">
-                <input type="checkbox" class="abs-check" name="conc_otro" style="top:80%;left:3.5%;">
-                <input type="checkbox" class="abs-check" name="conc_inf_gonococica" style="top:72%;left:27%;">
-                <input type="checkbox" class="abs-check" name="conc_chlamydia" style="top:74%;left:27%;">
-                <input type="checkbox" class="abs-check" name="conc_condiloma" style="top:76%;left:27%;">
-                <input type="checkbox" class="abs-check" name="conc_hepatitis_c" style="top:78%;left:27%;">
-                <input type="checkbox" class="abs-check" name="conc_molluscum" style="top:80%;left:27%;">
-
-                <!-- 20. Tratamiento completo -->
-                <input type="checkbox" class="abs-check" name="trat_SI" style="top:76%;left:72%;">
-                <input type="checkbox" class="abs-check" name="trat_NO" style="top:76%;left:80%;">
-
-                <!-- 17. Responsable -->
-                <input class="abs-input" name="responsable_nombre" style="top:86%;left:20%;width:40%;" placeholder="">
-
+                <!-- Submit Button -->
+                <div class="submit-container">
+                    <button type="button" id="btn-submit" onclick="submitData('SifilisGonrrea')">Guardar e Enviar a Drive</button>
+                    <p id="submit-status"></p>
+                    <button type="button" id="btn-pdf" onclick="descargarPDF()" style="margin-top:10px; padding: 15px 40px; background-color: #e74c3c; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(231,76,60,0.4);">📄 Descargar PDF</button>
+                </div>
             </form>
         </div>
     </div>
 
-    <!-- Botones fuera de la ficha -->
-    <div class="submit-container" style="display:none;">
-        <button type="button" id="btn-submit" onclick="submitData('SifilisGonorrea')">Guardar e Enviar a Drive</button>
-        <p id="submit-status"></p>
-        <button type="button" id="btn-pdf" onclick="descargarPDF()" style="margin-top:10px; padding: 15px 40px; background-color: #e74c3c; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(231,76,60,0.4);">📄 Descargar PDF</button>
-    </div>
-
     <script>
-    const CREDENTIALS = { username: "minsa", password: "123" };
-
-    function login() {
-        const userIn = document.getElementById("username").value;
-        const passIn = document.getElementById("password").value;
-        const errorMsg = document.getElementById("login-error");
-        if (userIn === CREDENTIALS.username && passIn === CREDENTIALS.password) {
-            document.getElementById("login-container").style.display = "none";
-            document.getElementById("form-container").style.display = "flex";
-            document.querySelector(".submit-container").style.display = "block";
-        } else {
-            errorMsg.textContent = "Usuario o contraseña incorrectos.";
-        }
+    // Verificar sesión del menú
+    if (sessionStorage.getItem('autenticado') === 'true') {
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('form-container').style.display = 'flex';
+        });
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        if (sessionStorage.getItem("autenticado") === "true") {
-            document.getElementById("login-container").style.display = "none";
-            document.getElementById("form-container").style.display = "flex";
-            document.querySelector(".submit-container").style.display = "block";
-        }
-        // Cargar imagen base64
-        document.getElementById("ficha-bg").src = "sifilis_gonorrea.png";
-    });
-
-    document.getElementById("password") && document.getElementById("password").addEventListener("keypress", function(e) {
-        if (e.key === "Enter") login();
-    });
-
     function descargarPDF() {
-        const editPanel = document.getElementById("edit-panel");
-        const submitContainer = document.querySelector(".submit-container");
-        if (editPanel) editPanel.style.display = "none";
-        if (submitContainer) submitContainer.style.display = "none";
+        const editPanel = document.getElementById('edit-panel');
+        const submitContainer = document.querySelector('.submit-container');
+        if (editPanel) editPanel.style.display = 'none';
+
         window.print();
+
         setTimeout(function() {
-            if (editPanel) editPanel.style.display = "";
-            if (submitContainer) submitContainer.style.display = "";
+            if (editPanel) editPanel.style.display = '';
         }, 1000);
     }
     </script>
-     <!-- Controles de Edición para el Usuario -->
+
+    <script src="app.js"></script>
+    <script src="edit_mode.js"></script>
+    <script>
+    // ── 1. Color mostaza → transparente al escribir ──────────────────────────
+    function initHasValue() {
+        document.querySelectorAll('.abs-input, .abs-fecha-seg, .abs-digito').forEach(el => {
+            if (el.value && el.value.trim() !== '') el.classList.add('has-value');
+
+            el.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    this.classList.add('has-value');
+                } else {
+                    this.classList.remove('has-value');
+                }
+            });
+        });
+    }
+
+    // ── 2. Auto-avance Día → Mes → Año ───────────────────────────────────────
+    function initFechasSeparadas() {
+        let grupos = {};
+        document.querySelectorAll('.abs-fecha-seg').forEach(el => {
+            let g = el.dataset.grupo;
+            if (!g) return;
+            if (!grupos[g]) grupos[g] = [];
+            grupos[g].push(el);
+        });
+        Object.values(grupos).forEach(campos => {
+            campos.forEach((el, idx) => {
+                el.addEventListener('input', function() {
+                    if (this.value.length === this.maxLength && idx < campos.length - 1) {
+                        campos[idx + 1].focus();
+                    }
+                });
+                el.addEventListener('keypress', function(e) {
+                    if (!/[0-9]/.test(e.key)) e.preventDefault();
+                });
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initFechasSeparadas();
+        initHasValue();
+    });
+
+    const _observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(m) {
+            if (m.target.id === 'form-container' && m.attributeName === 'style') {
+                initFechasSeparadas();
+                initHasValue();
+            }
+        });
+    });
+    _observer.observe(document.getElementById('form-container'), { attributes: true });
+    </script>
+    
+    <!-- Controles de Edición para el Usuario -->
     <div id="edit-panel" style="position: fixed; top: 10px; right: 10px; background: white; padding: 15px; border: 2px solid #e74c3c; border-radius: 8px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); width: 250px;">
         <h4 style="color: #e74c3c; margin-bottom: 10px; text-align:center;">🛠️ Modo Edición Activo</h4>
         
@@ -295,10 +391,5 @@
         
         <p style="font-size: 11px; margin-top: 10px; color: #555;">Haz clic en un cuadro para seleccionarlo (borde rojo). Usa los botones para agregar nuevos y luego envíame el resultado copiado.</p>
     </div>
-</body>
-</html>
-
-    <script src="app.js"></script>
-
 </body>
 </html>
