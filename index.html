@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sifilis materna y congenita</title>
+    <title>Ficha de Investigación Epidemiológica</title>
     <link rel="stylesheet" href="styles.css">
+
     <style>
     @media print {
+        /* Ocultar todo excepto la ficha */
         #login-container, #edit-panel { display: none !important; }
         #form-container {
             padding: 0 !important;
@@ -18,6 +20,8 @@
             max-width: 100% !important;
         }
         .submit-container { display: none !important; }
+
+        /* Mostrar valores de inputs como texto visible */
         .abs-input, .abs-fecha-seg, .abs-digito {
             background-color: transparent !important;
             border: none !important;
@@ -25,10 +29,13 @@
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
+
+        /* Mostrar checkboxes y radios correctamente */
         .abs-check, .abs-radio {
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
+
         body { margin: 0; padding: 0; }
         @page { margin: 0; size: A4 portrait; }
     }
@@ -40,7 +47,7 @@
     <div id="login-container">
         <div class="login-box">
             <h2>Acceso a Ficha Epidemiológica</h2>
-            <p>Sifilis materna y congenita - Ingrese sus credenciales</p>
+            <p>Ingrese sus credenciales para continuar</p>
             <div class="input-group">
                 <label for="username">Usuario:</label>
                 <input type="text" id="username" placeholder="Ingrese el usuario">
@@ -57,10 +64,11 @@
     <!-- Main Form Screen -->
     <div id="form-container" style="display: none;">
         <div class="document-wrapper">
-            <img src="ficha_fondo.png" alt="Sifilis materna y congenita" class="document-bg" id="document-bg">
+            <img src="ficha_fondo.png" alt="Ficha Epidemiológica" class="document-bg" id="document-bg">
             
             <form id="epidemiology-form">
-                  <!-- === CAMPOS ACTUALIZADOS === -->
+
+                <!-- === CAMPOS ACTUALIZADOS === -->
                 <input type="text" name="madre_apellidos_nombres" class="abs-input" style="top: 8.39%; left: 29.56%; width: 33%; font-size: 12px;">
                 <input type="text" name="nino_apellidos_nombres" class="abs-input" style="top: 10%; left: 26.78%; width: 35%; font-size: 12px;">
                 <input type="text" name="telefono" class="abs-input" style="top: 11.68%; left: 14.56%; width: 25%; font-size: 11px;">
@@ -250,20 +258,18 @@
                 <input type="text" name="Fecha_de_fallecimiento_6" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="5" style="top: 73.52%; left: 25.5%; width: 2%; height: 10px;">
                 <input type="text" name="Fecha_de_fallecimiento_7" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="6" style="top: 73.6%; left: 28.38%; width: 2%; height: 10px;">
                 <input type="text" name="Fecha_de_fallecimiento_8" class="abs-digito" maxlength="1" data-tipo="digito" data-grupo="Fecha_de_fallecimiento" data-idx="7" style="top: 73.44%; left: 31.03%; width: 2%; height: 12px;">
-                <input type="text" name="DISA/DIRESA/GERESA" class="abs-input" style="top: 14.87%; left: 22.55%; width: 20%; height: 19px;">
-                <input type="text" name="RED" class="abs-input" style="top: 15.11%; left: 46.22%; width: 16%; height: 15px; font-size: 12px;">
-                <input type="text" name="MICRORED" class="abs-input" style="top: 15.11%; left: 73%; width: 16%; height: 15px; font-size: 12px;">
 
                 <!-- Submit Button -->
                 <div class="submit-container">
-                    <button type="button" id="btn-submit" onclick="submitData('Sifilis')">Guardar e Enviar a Drive</button>
+                    <button type="button" id="btn-submit" onclick="submitData()">Guardar e Enviar a Drive</button>
                     <p id="submit-status"></p>
-                    <button type="button" id="btn-pdf" onclick="descargarPDF()" style="margin-top:10px; padding: 15px 40px; background-color: #e74c3c; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(231,76,60,0.4);">📄 Descargar PDF</button>
+                    <button type="button" id="btn-pdf" onclick="descargarPDF()" style="margin-top:10px; padding: 15px 40px; background-color: #e74c3c; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(231,76,60,0.4);">&#x1F4C4; Descargar PDF</button>
                 </div>
             </form>
         </div>
     </div>
 
+    
     <script>
     // Verificar sesión del menú
     if (sessionStorage.getItem('autenticado') === 'true') {
@@ -271,18 +277,6 @@
             document.getElementById('login-container').style.display = 'none';
             document.getElementById('form-container').style.display = 'flex';
         });
-    }
-
-    function descargarPDF() {
-        const editPanel = document.getElementById('edit-panel');
-        const submitContainer = document.querySelector('.submit-container');
-        if (editPanel) editPanel.style.display = 'none';
-
-        window.print();
-
-        setTimeout(function() {
-            if (editPanel) editPanel.style.display = '';
-        }, 1000);
     }
     </script>
 
@@ -292,6 +286,7 @@
     // ── 1. Color mostaza → transparente al escribir ──────────────────────────
     function initHasValue() {
         document.querySelectorAll('.abs-input, .abs-fecha-seg, .abs-digito').forEach(el => {
+            // Estado inicial (por si ya tiene valor guardado)
             if (el.value && el.value.trim() !== '') el.classList.add('has-value');
 
             el.addEventListener('input', function() {
@@ -327,11 +322,30 @@
         });
     }
 
+
+    // ── Descargar PDF ─────────────────────────────────────────────────────────
+    function descargarPDF() {
+        // Ocultar panel de edición temporalmente
+        const editPanel = document.getElementById('edit-panel');
+        const submitContainer = document.querySelector('.submit-container');
+        if (editPanel) editPanel.style.display = 'none';
+
+        window.print();
+
+        // Restaurar panel después de imprimir
+        setTimeout(function() {
+            if (editPanel) editPanel.style.display = '';
+        }, 1000);
+    }
+
+    // Ejecutar cuando el formulario ya es visible
     document.addEventListener('DOMContentLoaded', function() {
         initFechasSeparadas();
         initHasValue();
     });
 
+    // También re-ejecutar cuando el login muestra el formulario
+    // (app.js llama showForm(), así que observamos el cambio de display)
     const _observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(m) {
             if (m.target.id === 'form-container' && m.attributeName === 'style') {
@@ -360,6 +374,7 @@
             <button onclick="agregarRadio()" style="padding: 6px; background: #e67e22; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F518; Opción Única (Solo 1)</button>
             <button onclick="agregarSeleccion()" style="padding: 6px; background: #f39c12; color: white; border: none; border-radius: 4px; cursor: pointer;">&#x1F53D; Agregar Selección</button>
             
+            <!-- Controles de tamaño -->
             <div style="display:flex; gap: 4px;">
                 <button onclick="reducirAncho()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➖ Ancho</button>
                 <button onclick="aumentarAncho()" style="flex: 1; padding: 6px; background: #34495e; color: white; border: none; border-radius: 4px; cursor: pointer;">➕ Ancho</button>
